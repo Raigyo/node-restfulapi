@@ -4,6 +4,8 @@
 
 `npm init`: create package.json
 
+`npm init --yes`: create package.json (quickstart)
+
 ## Run
 
 **package.json**
