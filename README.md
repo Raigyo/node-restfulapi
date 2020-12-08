@@ -2,7 +2,7 @@
 
 *December 2020*
 
-> 🔨 From udemy '[Setting up a Node development environment](https://developer.mozilla.org/en-US/docs/Learn/Server-side/Express_Nodejs/development_environment)'.
+> 🔨 From udemy '[Apprendre Node.js & Créer une API REST de A à Z !](https://www.udemy.com/course/nodejs-api-rest/)'.
 
 
 ![Node Logo](_readme-img/nodejs-logo.png)
