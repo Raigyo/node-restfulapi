@@ -56,6 +56,7 @@ MembersRouter.route('/:id')
       for (let i = 0; i < members.length; i++) {
         // We don't want two members with the same name
         // we check if names are the same and id are differents
+        // if ( members.find( ( { name } ) => name === req.body.name ) && ( { id } ) => id !== req.body.id )  ) {
         if (req.body.name == members[i].name && req.params.id != members[i].id) {
           same = true
           break
@@ -111,16 +112,19 @@ MembersRouter.route('/')
   .post((req, res) => {
     if (req.body.name){
       // check if the name is already taken
-      let sameName = false;
-      for (let i = 0; i < members.length; i++) {
-        if (members[i].name == req.body.name) {
-          sameName = true; // prevent [ERR_HTTP_HEADERS_SENT]
-          break;
-        }
-      }
-      if (sameName){
-        res.json(error('name already taken'));
-      } else {
+      // let sameName = false;
+      // for (let i = 0; i < members.length; i++) {
+      //   if (members[i].name == req.body.name) {
+      //     sameName = true; // prevent [ERR_HTTP_HEADERS_SENT]
+      //     break;
+      //   }
+      // }
+      // if (sameName){
+      //   res.json(error('name already taken'));
+      // } else {
+        if ( members.find( ( { name } ) => name === req.body.name ) ) {
+          res.json( error( "Name already taken" ) );
+        } else {
         let member = {
           // id: members.length+1,
           id: createID(),
@@ -152,5 +156,6 @@ function getIndex(id) {
 
 function createID() {
   // id of the last member of the array + 1
+  // use MurmurHash: https://www.npmjs.com/package/murmurhash
   return members[members.length-1].id + 1;
 }

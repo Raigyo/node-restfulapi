@@ -62,7 +62,7 @@ app.use(express.urlencoded({ extended: true })); // for parsing application/x-ww
 
 `sudo kill -9 <PID>`: kill the process used by PID
 
-`sudo fuser -k 8001/tcp`: kill the port 8001
+`sudo fuser -k 8080/tcp`: kill the port 8001
 
 ------------------
 
