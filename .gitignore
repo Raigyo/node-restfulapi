@@ -3,5 +3,5 @@ package-lock.json
 # Node modules excepted module creation
 
 node_modules/**
-./_async/node_modules/**
+_async/node_modules/**
 !/node_modules/module_creation
