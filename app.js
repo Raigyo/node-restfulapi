@@ -51,21 +51,10 @@ MembersRouter.route('/:id')
     if (typeof(index) == 'string') {
       res.json(error(index)); // send error message
     } else {
-      let member = members[index];
-      let same = false;
-      for (let i = 0; i < members.length; i++) {
-        // We don't want two members with the same name
-        // we check if names are the same and id are differents
-        // if ( members.find( ( { name } ) => name === req.body.name ) && ( { id } ) => id !== req.body.id )  ) {
-        if (req.body.name == members[i].name && req.params.id != members[i].id) {
-          same = true
-          break
-        }
-      }
-
-      if (same) {
-        // same name error
-        res.json(error('same name'))
+      // let member = members[index];
+      // let same = false;
+      if ( members.find( ( { name } ) => name === req.body.name ) && members.find( (  { id } ) => id !== req.body.id )  ) {
+        res.json(error('Same name'))
       } else {
         // name different: we put the name
         members[index].name = req.body.name;
@@ -97,7 +86,7 @@ MembersRouter.route('/')
     // query: after '?' in url
     if (req.query.max != undefined > 0){
       /* The slice() method returns a shallow copy - a copy of the collection structure,
-      not the elements- of a portion of an array into a new array
+      not the elements - of a portion of an array into a new array
       object selected from start to end (end not included) where start and end
       represent the index of items in that array. The original array will not be modified.*/
       res.json(success(members.slice(0, req.query.max)));
@@ -112,16 +101,6 @@ MembersRouter.route('/')
   .post((req, res) => {
     if (req.body.name){
       // check if the name is already taken
-      // let sameName = false;
-      // for (let i = 0; i < members.length; i++) {
-      //   if (members[i].name == req.body.name) {
-      //     sameName = true; // prevent [ERR_HTTP_HEADERS_SENT]
-      //     break;
-      //   }
-      // }
-      // if (sameName){
-      //   res.json(error('name already taken'));
-      // } else {
         if ( members.find( ( { name } ) => name === req.body.name ) ) {
           res.json( error( "Name already taken" ) );
         } else {
@@ -134,7 +113,7 @@ MembersRouter.route('/')
         res.json(success(member))
       }
     } else {
-      res.json(error('no name value'))
+      res.json(error('No name value'))
     }
   })
 //\Route /
@@ -158,4 +137,5 @@ function createID() {
   // id of the last member of the array + 1
   // use MurmurHash: https://www.npmjs.com/package/murmurhash
   return members[members.length-1].id + 1;
+
 }
