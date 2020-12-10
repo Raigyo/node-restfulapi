@@ -1,7 +1,8 @@
 require("babel-register"); // ES6 conversion
-const express = require('express'); // use of express
+const express = require('express');
 const {success, error} = require('module_creation/functions'); // use of module creation in node_modules
 const morgan  = require('morgan'); // use of morgan - dev
+const uuid = require('uuid/v1');
 const app = express();
 const config = require('./config');
 
@@ -106,7 +107,8 @@ MembersRouter.route('/')
         } else {
         let member = {
           // id: members.length+1,
-          id: createID(),
+          // id: createID(),
+          id: uuid(),
           name: req.body.name
         }
         members.push(member)
@@ -134,8 +136,6 @@ function getIndex(id) {
 }
 
 function createID() {
-  // id of the last member of the array + 1
-  // use MurmurHash: https://www.npmjs.com/package/murmurhash
-  return members[members.length-1].id + 1;
-
+  // return members[members.length-1].id + 1;
+  return uuidv4();
 }
