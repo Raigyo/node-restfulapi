@@ -1,6 +1,6 @@
 require("babel-register"); // ES6 conversion
 const express = require('express'); // use of express
-const {success, error} = require('functions'); // use of module creation in node_modules
+const {success, error} = require('module_creation/functions'); // use of module creation in node_modules
 const morgan  = require('morgan'); // use of morgan - dev
 const app = express();
 const config = require('./config');

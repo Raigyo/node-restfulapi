@@ -1,4 +1,6 @@
-node_modules/
 package-lock.json
 
-!node_modules/functions.js
+# Node modules excepted module creation
+
+node_modules/**
+!/node_modules/module_creation

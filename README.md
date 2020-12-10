@@ -56,13 +56,24 @@ app.use(express.urlencoded({ extended: true })); // for parsing application/x-ww
 ````
 
 
-## Batch useful commands
+## Bash useful commands
 
 `sudo netstat -lpn |grep :8080`: check if port 8080 is used and display its PID
 
 `sudo kill -9 <PID>`: kill the process used by PID
 
 `sudo fuser -k 8080/tcp`: kill the port 8001
+
+## Module creation on Github (exclude node_modules excepted one folder or file)
+
+**.gitignore**
+
+````bash
+# Node modules excepted module creation
+
+node_modules/**
+!/node_modules/module_creation
+````
 
 ------------------
 
