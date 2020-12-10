@@ -72,7 +72,10 @@ app.use(express.urlencoded({ extended: true })); // for parsing application/x-ww
 # Node modules excepted module creation
 
 node_modules/**
-!/node_modules/module_creation
+# whitelist folder
+!/node_modules/module_creation/
+# whitelist files
+!/node_modules/module_creation/*
 ````
 
 ------------------

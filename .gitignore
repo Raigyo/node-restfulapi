@@ -4,4 +4,7 @@ package-lock.json
 
 node_modules/**
 _async/node_modules/**
-!/node_modules/module_creation
+# whitelist folder
+!/node_modules/module_creation/
+# whitelist files
+!/node_modules/module_creation/*
