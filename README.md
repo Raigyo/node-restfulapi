@@ -96,7 +96,7 @@ FLUSH PRIVILEGES;
 
 `sudo kill -9 <PID>`: kill the process used by PID.
 
-`sudo fuser -k 8080/tcp`: kill the port 8001.
+`sudo fuser -k 8080/tcp`: kill the port 8080.
 
 ------------------
 
