@@ -5,6 +5,7 @@ const mysql = require('mysql');
 const morgan  = require('morgan'); // use of morgan - dev
 const uuid = require('uuid/v1');
 const config = require('./config');
+const { result } = require("lodash");
 
 
 const db = mysql.createConnection({
@@ -35,16 +36,18 @@ db.connect((err) => {
       MembersRouter.route('/:id')
         // GET - id
         .get((req, res) => {
-
-          let index = getIndex(req.params.id);
-
-          if (typeof(index) == 'string') {
-            // if it's a string it's the error message
-            res.json(error(index)); // send error message
-          } else {
-            res.json(success(members[index]));
-          }
-        })
+          db.query('SELECT * FROM members WHERE id = ?', [req.query.max], (err, result) => {
+            if (err) {
+              res.json(error(err.message));
+            } else {
+                if (result[0] != undefined) {
+                  res.json(success(result));
+                } else {
+                  res.json(error('Wrong id value'))
+                }
+            }
+          })
+        })// \GET - id
 
         // PUT
         .put((req, res) => {
@@ -64,7 +67,7 @@ db.connect((err) => {
               res.json(success(true));
             }
           }
-        })
+        })// \PUT
 
         // DELETE
         .delete((req, res) => {
@@ -79,7 +82,7 @@ db.connect((err) => {
             members.splice(index, 1);
             res.json(success(members));
           }
-        })
+        })// \DELETE
       //\Route /:id
 
       // Route /
@@ -87,37 +90,68 @@ db.connect((err) => {
         // GET
         .get((req, res) => {
           // query: after '?' in url
-          if (req.query.max != undefined > 0){
+          if (req.query.max != undefined && req.query.max > 0){
             /* The slice() method returns a shallow copy - a copy of the collection structure,
             not the elements - of a portion of an array into a new array
             object selected from start to end (end not included) where start and end
             represent the index of items in that array. The original array will not be modified.*/
-            res.json(success(members.slice(0, req.query.max)));
+            db.query('SELECT * FROM members LIMIT 0, ?', [req.query.max], (err, result) => {
+              if (err) {
+                res.json(error(err.message));
+              }
+              else {
+                res.json(success(result));
+              }
+            });
           } else if (req.query.max != undefined){
             res.json(error('Wrong max value'));
           } else {
-            res.json(success(members));
+            db.query('SELECT * FROM members', (err, result) => {
+              if (err) {
+                res.json(error(err.message));
+              }
+              else {
+                res.json(success(result));
+              }
+            });
           }
-        })
+        })// \GET
 
         // POST
         .post((req, res) => {
           if (req.body.name){
-            // check if the name is already taken
-              if ( members.find( ( { name } ) => name === req.body.name ) ) {
-                res.json( error( "Name already taken" ) );
+            db.query('SELECT * FROM members WHERE name = ?', [req.body.name], (err, result) => {
+              if (err) {
+                res.json(error(err.message))
               } else {
-              let member = {
-                id: uuid(),
-                name: req.body.name
+                // check if the name is already taken in DB
+                if ( result[0] != undefined ) {
+                  res.json(error("Name already taken"));
+                } else {
+                  db.query('INSERT INTO members(name) VALUES(?)', [req.body.name], (err, result) => {
+                    if (err) {
+                      res.json(error(err.message))
+                    } else {
+                      db.query('SELECT * FROM members WHERE name = ?', [req.body.name], (err, result) => {
+                        if (err) {
+                          res.json(error(err.message))
+                        } else {
+                          res.json(success({
+                            id: uuid(),
+                            name: result[0].name
+                          }))
+                        }
+                      })
+                    }
+                  })
+                }
               }
-              members.push(member)
-              res.json(success(member))
-            }
-          } else {
+            })// \db.query
+          }
+          else {
             res.json(error('No name value'))
           }
-        })
+        })// \POST
       //\Route /
 
       // Middleware for routes: path
@@ -129,8 +163,6 @@ db.connect((err) => {
       );
   }
 })//\db.connect
-
-
 
 // Helper functions
 function getIndex(id) {

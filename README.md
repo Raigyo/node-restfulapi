@@ -62,14 +62,6 @@ app.use(express.urlencoded({ extended: true })); // for parsing application/x-ww
 
 `npm i mysql`
 
-## Bash useful commands
-
-`sudo netstat -lpn |grep :8080`: check if port 8080 is used and display its PID.
-
-`sudo kill -9 <PID>`: kill the process used by PID.
-
-`sudo fuser -k 8080/tcp`: kill the port 8001.
-
 ## Module creation on Github (exclude node_modules excepted one folder or file)
 
 **.gitignore**
@@ -84,18 +76,27 @@ node_modules/**
 !/node_modules/module_creation/*
 ````
 
-## Xamp and MySql
+## MySql 8 & NodeJS: mysql_native_password
 
-**Error: MySQL shutdown unexpectedly.**
+````sql
+CREATE USER 'user'@'localhost' IDENTIFIED BY 'password';
+GRANT ALL PRIVILEGES ON * . * TO 'user'@'localhost';
+````
 
-*This may be due to a blocked port, missing dependencies, improper privileges, a crash, or a shutdown by another method. Press the Logs button to view error logs and check the Windows Event Viewer for more clues If you need more help, copy and post this entire log window on the forums*
+Because *mysqljs* in Node (the package you install with npm i mysql and use it in your Node code) doesn't support the *caching_sha2_password* authentication method of MySQL 8, we use *mysql_native_password*:
 
-- Rename the folder *mysql/data* to *mysql/data_old* (you can use any name)
-- Create a new folder *mysql/data*
-- Copy the content that resides in *mysql/backup* to the new *mysql/data* folder
-- Copy all your database folders that are in *mysql/data_old* to *mysql/data* (skipping the mysql, performance_schema, and phpmyadmin folders from *data_old*)
-- Finally copy the *ibdata1* file from *mysql/data_old* and replace it inside *mysql/data* folder
-- Start MySQL from XAMPP control panel
+````sql
+ALTER USER 'user'@'localhost' IDENTIFIED WITH mysql_native_password BY 'new_password';
+FLUSH PRIVILEGES;
+````
+
+## Bash useful commands
+
+`sudo netstat -lpn |grep :8080`: check if port 8080 is used and display its PID.
+
+`sudo kill -9 <PID>`: kill the process used by PID.
+
+`sudo fuser -k 8080/tcp`: kill the port 8001.
 
 ------------------
 
