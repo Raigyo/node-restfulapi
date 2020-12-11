@@ -40,11 +40,11 @@ exports.error = function (message){
 
 `npm i express`
 
-- [morgan](https://www.npmjs.com/package/morgan): HTTP request logger middleware for node.js
+- [morgan](https://www.npmjs.com/package/morgan): HTTP request logger middleware for node.js.
 
 `npm i morgan`
 
-- [body-parser](https://www.npmjs.com/package/body-parser): Node.js body parsing middleware
+- [body-parser](https://www.npmjs.com/package/body-parser): Node.js body parsing middleware.
 
 `npm i body-parser`
 
@@ -54,15 +54,21 @@ Note: not needed. Use:
 app.use(express.json()) // for parsing application/json
 app.use(express.urlencoded({ extended: true })); // for parsing application/x-www-form-urlencoded
 ````
+- [uuid](https://www.npmjs.com/package/uuid): For the creation of RFC4122 UUIDs.
 
+`npm i uuid`
+
+- [mysql](https://www.npmjs.com/package/mysql): MySQL client for Node.js.
+
+`npm i mysql`
 
 ## Bash useful commands
 
-`sudo netstat -lpn |grep :8080`: check if port 8080 is used and display its PID
+`sudo netstat -lpn |grep :8080`: check if port 8080 is used and display its PID.
 
-`sudo kill -9 <PID>`: kill the process used by PID
+`sudo kill -9 <PID>`: kill the process used by PID.
 
-`sudo fuser -k 8080/tcp`: kill the port 8001
+`sudo fuser -k 8080/tcp`: kill the port 8001.
 
 ## Module creation on Github (exclude node_modules excepted one folder or file)
 
@@ -77,6 +83,19 @@ node_modules/**
 # whitelist files
 !/node_modules/module_creation/*
 ````
+
+## Xamp and MySql
+
+**Error: MySQL shutdown unexpectedly.**
+
+*This may be due to a blocked port, missing dependencies, improper privileges, a crash, or a shutdown by another method. Press the Logs button to view error logs and check the Windows Event Viewer for more clues If you need more help, copy and post this entire log window on the forums*
+
+- Rename the folder *mysql/data* to *mysql/data_old* (you can use any name)
+- Create a new folder *mysql/data*
+- Copy the content that resides in *mysql/backup* to the new *mysql/data* folder
+- Copy all your database folders that are in *mysql/data_old* to *mysql/data* (skipping the mysql, performance_schema, and phpmyadmin folders from *data_old*)
+- Finally copy the *ibdata1* file from *mysql/data_old* and replace it inside *mysql/data* folder
+- Start MySQL from XAMPP control panel
 
 ------------------
 
