@@ -1,24 +1,29 @@
 require("babel-register"); // ES6 conversion
 const express = require('express');
+// const {success, error} = require('module_creation/functions'); // use of module creation in node_modules
 const {success, error} = require('./assets/functions');
-const mysql = require('promise-mysql');
+const mysql = require('mysql');
 const morgan  = require('morgan'); // use of morgan - dev
 const uuid = require('uuid/v1');
 const config = require('./assets/config');
 
-mysql.createConnection({
-  host: config.db.host,
-  port: config.db.port,
-  database: config.db.database,
-  user: config.db.user,
-  password: config.db.password
-}).then((db) => {
+const db = mysql.createConnection({
+  host: 'localhost',
+  port: 3306,
+  database: 'nodejs',
+  user: 'chilot',
+  password: '25_01_75_U'
+});
+
+db.connect((err) => {
+  if (err)
+    console.log(err.message)
+  else {
     console.log('Connected')
 
       // Routing init
       const app = express();
       let MembersRouter = express.Router();
-      let Members = require('./assets/classes/Members')(db, config);
 
       // We use morgan to check url request in console
       app.use(morgan('dev'));
@@ -176,7 +181,5 @@ mysql.createConnection({
       app.listen(config.port, () => console.log(
         'Started on port '+config.port+': http://localhost:'+config.port+config.rootAPI+'members')
       );
-  })//\then
-.catch((err) => {
-  console.log('Error during database connection: ' + err.message);
-})
+  }
+})//\db.connect

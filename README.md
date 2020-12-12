@@ -7,33 +7,6 @@
 
 ![Node Logo](_readme-img/nodejs-logo.png)
 
-## Function created in node_modules
-
-**app.js**
-
-````js
-const func = require('functions')
-````
-
-
-**functions**
-
-````js
-exports.success = function (result){
-  return {
-    status: 'success',
-    result: result
-  }
-}
-
-exports.error = function (message){
-  return {
-    status: 'error',
-    result: message
-  }
-}
-````
-
 ## Dependancies
 
 - [express](https://www.npmjs.com/package/express): Fast, unopinionated, minimalist web framework for node.
@@ -61,6 +34,12 @@ app.use(express.urlencoded({ extended: true })); // for parsing application/x-ww
 - [mysql](https://www.npmjs.com/package/mysql): MySQL client for Node.js.
 
 `npm i mysql`
+
+Used in developpment but replaced by *promise-mysql*.
+
+- [promise-mysql](https://www.npmjs.com/package/promise-mysql): Promise-mysql is a wrapper for mysqljs/mysql that wraps function calls with Bluebird promises..
+
+`npm i promise-mysql`
 
 ## Module creation on Github (exclude node_modules excepted one folder or file)
 
