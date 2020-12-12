@@ -128,9 +128,9 @@ db.connect((err) => {
                 if ( result[0] != undefined ) {
                   res.json(error("Name already taken"));
                 } else {
-                  db.query('INSERT INTO members(name) VALUES(?)', [req.body.name], (err, result) => {
+                  db.query('INSERT INTO members(id, name) VALUES(?, ?)', [req.body.id, req.body.name], (err, result) => {
                     if (err) {
-                      res.json(error(err.message))
+                      res.json(error("Insert:" + err.message))
                     } else {
                       db.query('SELECT * FROM members WHERE name = ?', [req.body.name], (err, result) => {
                         if (err) {
