@@ -1,6 +1,6 @@
 require("babel-register"); // ES6 conversion
 const express = require('express');
-const {success, error, checkAndChange} = require('./assets/functions');
+const {success, error} = require('./assets/functions');
 const mysql = require('promise-mysql');
 const morgan  = require('morgan'); // use of morgan - dev
 const uuid = require('uuid/v1');
@@ -29,9 +29,18 @@ mysql.createConnection({
       // Route /:id
       MembersRouter.route('/:id')
         // GET - id
-        .get(async (req, res) => {
-          let member = await Members.getByID(req.params.id);
-          res.json(checkAndChange(member));
+        .get((req, res) => {
+          db.query('SELECT * FROM members WHERE id = ?', [req.params.id], (err, result) => {
+            if (err) {
+              res.json(error(err.message));
+            } else {
+                if (result[0] != undefined) {
+                  res.json(success(result[0]))
+                } else {
+                  res.json(error('Wrong id value'))
+                }
+            }
+          })
         })// \GET - id
 
         // PUT
