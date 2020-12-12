@@ -36,12 +36,12 @@ db.connect((err) => {
       MembersRouter.route('/:id')
         // GET - id
         .get((req, res) => {
-          db.query('SELECT * FROM members WHERE id = ?', [req.query.max], (err, result) => {
+          db.query('SELECT * FROM members WHERE id = ?', [req.params.id], (err, result) => {
             if (err) {
               res.json(error(err.message));
             } else {
                 if (result[0] != undefined) {
-                  res.json(success(result));
+                  res.json(success(result[0]))
                 } else {
                   res.json(error('Wrong id value'))
                 }
@@ -51,38 +51,59 @@ db.connect((err) => {
 
         // PUT
         .put((req, res) => {
-          let index = getIndex(req.params.id);
-
-          if (typeof(index) == 'string') {
-            res.json(error(index)); // send error message
-          } else {
-            // let member = members[index];
-            // let same = false;
-            if ( members.find( ( { name } ) => name === req.body.name )
-                && members.find( (  { id } ) => id !== req.body.id )  ) {
-              res.json(error('Same name'))
-            } else {
-              // name different: we put the name
-              members[index].name = req.body.name;
-              res.json(success(true));
-            }
+          if (req.body.name) {
+            db.query('SELECT * FROM members WHERE id = ?', [req.params.id], (err, result) => {
+              if (err) {
+                res.json(error(err.message))
+              } else {
+                  if (result[0] != undefined) { // Id exists so we check if the name doesn't already exists
+                    db.query('SELECT * FROM members WHERE name = ? AND id != ?', [req.body.name, req.params.id], (err, result) => {
+                      if (err) {
+                          res.json(error(err.message))
+                      } else {
+                          if (result[0] != undefined) { // Same name found
+                              res.json(error('Name already exists'))
+                          } else {// Now we can modify the member
+                              db.query('UPDATE members SET name = ? WHERE id = ?', [req.body.name, req.params.id], (err, result) => {
+                                  if (err) {
+                                      res.json(error(err.message))
+                                  } else { // modify datas
+                                      res.json(success(true))
+                                  }
+                              })
+                          }
+                      }
+                    })
+                  } else {
+                      res.json(error('Wrong id'))
+                  }
+              }
+            })
+          } else { // No name inserted
+              res.json(error('No name value'))
           }
         })// \PUT
 
         // DELETE
         .delete((req, res) => {
-          let index = getIndex(req.params.id);
-
-          if (typeof(index) == 'string') {
-            // if it's a string it's the error message
-            res.json(error(index)); // send error message
-          } else {
-            /*The splice() method changes the contents of an array by removing or replacing existing
-            elements and/or adding new elements in place.*/
-            members.splice(index, 1);
-            res.json(success(members));
-          }
-        })// \DELETE
+          db.query('SELECT * FROM members WHERE id = ?', [req.params.id], (err, result) => {
+            if (err) {
+                res.json(error(err.message))
+            } else {
+                if (result[0] != undefined) {
+                    db.query('DELETE FROM members WHERE id = ?', [req.params.id], (err, result) => {
+                        if (err) {
+                            res.json(error(err.message))
+                        } else {
+                            res.json(success(true))
+                        }
+                    })
+                } else {
+                    res.json(error('Wrong id'))
+                }
+            }
+          })
+      })// \DELETE
       //\Route /:id
 
       // Route /
