@@ -11,6 +11,8 @@ module.exports = (_db, _config) => {
 let Members = class {
 
   // GET - id
+  /*Static class methods are defined on the class itself.
+  You cannot call a static method on an object, only on an object class.*/
   static getByID(id) {
 
     return new Promise((next) => {
@@ -23,6 +25,26 @@ let Members = class {
       })
       .catch((err) => next(err))
     })
+
   };// \GET - id
+
+  // GET - all
+  static getAll(max) {
+
+    return new Promise((next) => {
+      if (max != undefined && max > 0) {
+        db.query('SELECT * FROM members LIMIT 0, ?', [parseInt(max)])
+          .then((result) => next(result))
+          .catch((err) => next(err))
+      } else if (max != undefined) {
+          next(new Error('Wrong max value'));
+      } else {
+          db.query('SELECT * FROM members')
+          .then((result) => next(result))
+          .catch((err) => next(err))
+      }
+    })
+
+  };// \GET - all
 
 };// \Members
