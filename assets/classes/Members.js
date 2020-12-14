@@ -21,7 +21,7 @@ let Members = class {
         if (result[0] !== undefined)  // if ID exists
           next(result[0]); // if ok send result
         else
-          next(new Error('Wrong id value'));
+          next(new Error(config.errors.wrongID));
       })
       .catch((err) => next(err));
     }) // \ Promise
@@ -37,7 +37,7 @@ let Members = class {
           .then((result) => next(result))
           .catch((err) => next(err));
       } else if (max !== undefined) {
-          next(new Error('Wrong max value'));
+          next(new Error(config.errors.wrongMaxValue));
       } else { // retrieve and send object
           db.query('SELECT * FROM members')
           .then((result) => next(result)) // if ok send result
@@ -57,7 +57,7 @@ let Members = class {
         db.query('SELECT * FROM members WHERE name = ?', [name])
           .then((result) => {
             if ( result[0] !== undefined ) { // member already exists
-              next(new Error('Name already taken'));
+              next(new Error(config.errors.nameAlreadyTaken));
             } else { // send promise to insert new member
               return db.query('INSERT INTO members(id, name) VALUES(?, ?)', [id, name]);
             }
@@ -73,7 +73,7 @@ let Members = class {
           })
           .catch((err) => next(err));
       } else {
-        next(new Error('No name value'));
+        next(new Error(config.errors.noNameValue));
       }
     }) // \ Promise
 
@@ -89,12 +89,12 @@ let Members = class {
             if (result[0] != undefined) {
               return db.query('SELECT * FROM members WHERE name = ? AND id != ?', [name, id]);
             } else {
-                next(new Error('Wrong id'));
+                next(new Error(config.errors.wrongID));
             }
           })
           .then((result) => {
             if (result[0] != undefined) { // Same name found
-              next(new Error('Name already taken'));
+              next(new Error(config.errors.nameAlreadyTaken));
             } else {// Now we can modify the member
                 return db.query('UPDATE members SET name = ? WHERE id = ?', [name, id]);
             }
@@ -102,7 +102,7 @@ let Members = class {
           .then(() => next(true))
           .catch((err) => next(err));
       } else { // No name inserted
-          next(new Error('No name value'));
+          next(new Error(config.errors.noNameValue));
       }
     })// \ Promise
   }; // \ PUT
@@ -115,13 +115,12 @@ let Members = class {
         if (result[0] != undefined) {
           return db.query('DELETE FROM members WHERE id = ?', [id]);
         } else {
-          next(new Error('Wrong id'));
+          next(new Error(config.errors.wrongID));
         }
       })
       .then(() => next(true))
       .catch((err) => next(err));
     })
   }; // \ DELETE
-
 
 }; // \Members

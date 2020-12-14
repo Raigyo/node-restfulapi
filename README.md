@@ -83,3 +83,4 @@ FLUSH PRIVILEGES;
 
 - [MDN: Express web framework (Node.js/JavaScript)](https://developer.mozilla.org/en-US/docs/Learn/Server-side/Express_Nodejs)
 - [ExpressJS](https://expressjs.com/fr/)
+- [Swagger](https://swagger.io/)

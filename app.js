@@ -3,7 +3,7 @@ const express = require('express');
 const {success, error, checkAndChange} = require('./assets/functions');
 const mysql = require('promise-mysql');
 const morgan  = require('morgan'); // use of morgan - dev
-const config = require('./assets/config');
+const config = require('./assets/config-dev');
 
 mysql.createConnection({
   host: config.db.host,
