@@ -51,7 +51,7 @@ let Members = class {
   static add(name) {
 
     return new Promise ((next) => {
-      if (name || name.trim() === '') {
+      if (name && name.trim() !== '') {
         name = name.trim();
         const id = uuid();
         db.query('SELECT * FROM members WHERE name = ?', [name])
