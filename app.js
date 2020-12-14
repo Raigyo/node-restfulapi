@@ -1,5 +1,8 @@
 require("babel-register"); // ES6 conversion
 const express = require('express');
+// const expressOasGenerator = require('express-oas-generator'); // create json with api map
+const swaggerUi = require('swagger-ui-express');
+const swaggerDocument = require('./assets/swagger.json');
 const {success, error, checkAndChange} = require('./assets/functions');
 const mysql = require('promise-mysql');
 const morgan  = require('morgan'); // use of morgan - dev
@@ -16,6 +19,7 @@ mysql.createConnection({
 
   // Routing init
   const app = express();
+  // expressOasGenerator.init(app, {});
   let MembersRouter = express.Router();
   let Members = require('./assets/classes/Members')(db, config);
 
@@ -24,6 +28,7 @@ mysql.createConnection({
 
   app.use(express.json()) // for parsing application/json
   app.use(express.urlencoded({ extended: true })); // for parsing application/x-www-form-urlencoded
+  app.use(config.rootAPI+'api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 
   // Route /:id
   MembersRouter.route('/:id')

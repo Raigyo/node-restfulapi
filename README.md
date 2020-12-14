@@ -21,7 +21,9 @@
 
 `npm i body-parser`
 
-Note: not needed. Use:
+Note: not needed.
+
+Use instead in *app.js**:
 
 ````js
 app.use(express.json()) // for parsing application/json
@@ -37,9 +39,22 @@ app.use(express.urlencoded({ extended: true })); // for parsing application/x-ww
 
 Used in developpment but replaced by *promise-mysql*.
 
-- [promise-mysql](https://www.npmjs.com/package/promise-mysql): Promise-mysql is a wrapper for mysqljs/mysql that wraps function calls with Bluebird promises..
+- [promise-mysql](https://www.npmjs.com/package/promise-mysql): Promise-mysql is a wrapper for mysqljs/mysql that wraps function calls with Bluebird promises.
 
 `npm i promise-mysql`
+
+- [express-oas-generator](https://www.npmjs.com/package/express-oas-generator):
+
+  -- automatically generate OpenAPI (Swagger) specification for existing ExpressJS 4.x REST API applications;
+  -- provide Swagger UI basing on generated specification.
+
+  NB: can be removed after generating json.
+
+`npm i express-oas-generator`
+
+- [swagger-ui-express](https://www.npmjs.com/package/swagger-ui-express): This module allows you to serve auto-generated swagger-ui generated API docs from express, based on a *swagger.json* file. The result is living documentation for your API hosted from your API server via a route.
+
+`npm i swagger-ui-express`
 
 ## Module creation on Github (exclude node_modules excepted one folder or file)
 
