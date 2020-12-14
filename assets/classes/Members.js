@@ -107,4 +107,21 @@ let Members = class {
     })// \ Promise
   }; // \ PUT
 
+  // DELETE
+  static delete(id) {
+    return new Promise ((next) => {
+      db.query('SELECT * FROM members WHERE id = ?', [id])
+      .then((result) => {
+        if (result[0] != undefined) {
+          return db.query('DELETE FROM members WHERE id = ?', [id]);
+        } else {
+          next(new Error('Wrong id'));
+        }
+      })
+      .then(() => next(true))
+      .catch((err) => next(err));
+    })
+  }; // \ DELETE
+
+
 }; // \Members
