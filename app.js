@@ -3,7 +3,6 @@ const express = require('express');
 const {success, error, checkAndChange} = require('./assets/functions');
 const mysql = require('promise-mysql');
 const morgan  = require('morgan'); // use of morgan - dev
-// const uuid = require('uuid/v1');
 const config = require('./assets/config');
 
 mysql.createConnection({
@@ -35,38 +34,9 @@ mysql.createConnection({
     })// \GET - id
 
     // PUT
-    .put((req, res) => {
-      if (req.body.name) {
-        db.query('SELECT * FROM members WHERE id = ?', [req.params.id], (err, result) => {
-          if (err) {
-            res.json(error(err.message))
-          } else {
-              if (result[0] != undefined) { // Id exists so we check if the name doesn't already exists
-                db.query('SELECT * FROM members WHERE name = ? AND id != ?', [req.body.name, req.params.id], (err, result) => {
-                  if (err) {
-                      res.json(error(err.message))
-                  } else {
-                      if (result[0] != undefined) { // Same name found
-                          res.json(error('Name already exists'))
-                      } else {// Now we can modify the member
-                          db.query('UPDATE members SET name = ? WHERE id = ?', [req.body.name, req.params.id], (err, result) => {
-                              if (err) {
-                                  res.json(error(err.message))
-                              } else { // modify datas
-                                  res.json(success(true))
-                              }
-                          })
-                      }
-                  }
-                })
-              } else {
-                  res.json(error('Wrong id'))
-              }
-          }
-        })
-      } else { // No name inserted
-          res.json(error('No name value'))
-      }
+    .put(async(req, res) => {
+      let updateMember = await Members.update(req.params.id, req.body.name);
+      res.json(checkAndChange(updateMember));
     })// \PUT
 
     // DELETE

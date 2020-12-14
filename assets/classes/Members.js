@@ -51,7 +51,7 @@ let Members = class {
   static add(name) {
 
     return new Promise ((next) => {
-      if (name && name.trim() !== '') {
+      if (name !== undefined && name.trim() !== '') {
         name = name.trim();
         const id = uuid();
         db.query('SELECT * FROM members WHERE name = ?', [name])
@@ -78,5 +78,33 @@ let Members = class {
     }) // \ Promise
 
   }; // \POST
+
+  // PUT
+  static update(id, name) {
+    return new Promise ((next) => {
+      if (name !== undefined && name.trim() !== '') {
+        name = name.trim();
+        db.query('SELECT * FROM members WHERE id = ?', [id])
+          .then((result) => {
+            if (result[0] != undefined) {
+              return db.query('SELECT * FROM members WHERE name = ? AND id != ?', [name, id]);
+            } else {
+                next(new Error('Wrong id'));
+            }
+          })
+          .then((result) => {
+            if (result[0] != undefined) { // Same name found
+              next(new Error('Name already taken'));
+            } else {// Now we can modify the member
+                return db.query('UPDATE members SET name = ? WHERE id = ?', [name, id]);
+            }
+          })
+          .then(() => next(true))
+          .catch((err) => next(err));
+      } else { // No name inserted
+          next(new Error('No name value'));
+      }
+    })// \ Promise
+  }; // \ PUT
 
 }; // \Members
