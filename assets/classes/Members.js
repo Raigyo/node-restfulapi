@@ -19,7 +19,7 @@ let Members = class {
       db.query('SELECT * FROM members WHERE id = ?', [id])
       .then((result) => { // retrieve and send object
         if (result[0] !== undefined)  // if ID exists
-          next(result[0]);
+          next(result[0]); // if ok send result
         else
           next(new Error('Wrong id value'));
       })
@@ -40,7 +40,7 @@ let Members = class {
           next(new Error('Wrong max value'));
       } else { // retrieve and send object
           db.query('SELECT * FROM members')
-          .then((result) => next(result))
+          .then((result) => next(result)) // if ok send result
           .catch((err) => next(err));
       }
     }) // \ Promise
@@ -53,7 +53,7 @@ let Members = class {
     return new Promise ((next) => {
       if (name || name.trim() === '') {
         name = name.trim();
-        let id = uuid();
+        const id = uuid();
         db.query('SELECT * FROM members WHERE name = ?', [name])
           .then((result) => {
             if ( result[0] !== undefined ) { // member already exists
@@ -66,8 +66,8 @@ let Members = class {
             return db.query('SELECT * FROM members WHERE name = ?', [name]);
           })
           .then((result) => {
-            next({
-              //id: uuid(),
+            next({ // if ok send result
+              id: id,
               name: result[0].name
             })
           })
