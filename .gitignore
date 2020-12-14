@@ -1,5 +1,6 @@
 package-lock.json
 mysql-apt-config_0.8.15-1_all.deb
+
 # Node modules excepted module creation
 
 node_modules/**
