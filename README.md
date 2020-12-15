@@ -29,6 +29,82 @@
 
 `curl -X POST "http://localhost:8080/api/v1/members" -H  "accept: application/json" -H  "Content-Type: application/json" -d "{  \"name\": \"<NEW-NAME>\"}"`
 
+## Postman
+
+The following file can be imported in Postman to make CRUD operations test: [NodeJS-members.postman_collection.json](./_postman/NodeJS-members.postman_collection.json)
+
+![swagger capture](_readme-img/postman-01.png)
+
+## OpenAPI 3.0 / Swagger
+
+### express-oas-generator
+
+Install: `npm i express-oas-generator`
+
+**app.js**
+````js
+const expressOasGenerator = require('express-oas-generator'); // create json with api map
+
+// ...
+
+  // Routing init
+  const app = express();
+  expressOasGenerator.init(app, {});
+````
+
+`npm start`
+
+[http://localhost:8080/docs](http://localhost:8080/docs)
+
+Click on *Specification Json* and copy the content.
+
+Paste the content in a created file *swagger.json*.
+
+NB: *express-oas-generator* isn't useful and can be removed using `npm un express-oas-generator`.
+
+Remove the following lines:
+
+````js
+const expressOasGenerator = require('express-oas-generator'); // new line
+// ...
+  const app = express();
+  expressOasGenerator.init(app, {}); // new line
+````
+### swagger-ui-express
+
+Install: `npm i swagger-ui-express`
+
+**app.js**
+````js
+const swaggerUi = require('swagger-ui-express'); // new line
+const swaggerDocument = require('./swagger.json'); // new line, use the right path to the file
+
+// ...
+
+  app.use(express.urlencoded({ extended: true }));
+  app.use(config.rootAPI+'api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument)); // new line
+
+  // Route /:id
+  MembersRouter.route('/:id')
+
+````
+
+`npm start`
+
+[http://localhost:8080/api/v1/api-docs](http://localhost:8080/api/v1/api-docs)
+
+The file *swagger.json* can be edited to provide more accurate informations.
+
+In this repo: [swagger.json](./assets/swagger.json)
+
+See:
+
+- [OpenAPI Specification](https://swagger.io/specification/)
+- [Swagger Editor](https://swagger.io/tools/swagger-editor/)
+- [Swagger UI](https://swagger.io/tools/swagger-ui/)
+
+![swagger capture](_readme-img/swagger-01.png)
+
 ## Dependancies
 
 - [express](https://www.npmjs.com/package/express): Fast, unopinionated, minimalist web framework for node.
