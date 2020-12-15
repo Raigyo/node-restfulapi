@@ -7,6 +7,28 @@
 
 ![Node Logo](_readme-img/nodejs-logo.png)
 
+## CURL request
+
+**GET ID**
+
+`curl -X GET "http://localhost:8080/api/v1/members/<ID>" -H  "accept: application/json"`
+
+**PUT**
+
+`curl -X PUT "http://localhost:8080/api/v1/members/<ID>" -H  "accept: application/json" -H  "Content-Type: application/json" -d "{  \"name\": \"<NEW-NAME>\"}"`
+
+**DELETE**
+
+`curl -X DELETE "http://localhost:8080/api/v1/members/<ID>" -H  "accept: application/json"`
+
+**GET**
+
+`curl -X GET "http://localhost:8080/api/v1/members" -H  "accept: application/json"`
+
+**POST**
+
+`curl -X POST "http://localhost:8080/api/v1/members" -H  "accept: application/json" -H  "Content-Type: application/json" -d "{  \"name\": \"<NEW-NAME>\"}"`
+
 ## Dependancies
 
 - [express](https://www.npmjs.com/package/express): Fast, unopinionated, minimalist web framework for node.
@@ -55,6 +77,8 @@ Used in developpment but replaced by *promise-mysql*.
 - [swagger-ui-express](https://www.npmjs.com/package/swagger-ui-express): This module allows you to serve auto-generated swagger-ui generated API docs from express, based on a *swagger.json* file. The result is living documentation for your API hosted from your API server via a route.
 
 `npm i swagger-ui-express`
+
+[http://localhost:8080/api/v1/api-docs/](http://localhost:8080/api/v1/api-docs/)
 
 ## Module creation on Github (exclude node_modules excepted one folder or file)
 

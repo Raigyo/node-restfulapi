@@ -27,6 +27,7 @@
           {
             "name": "id",
             "in": "path",
+            "type": "string",
             "required": true
           }
         ],
@@ -42,11 +43,23 @@
           {
             "name": "id",
             "in": "path",
+            "properties": {
+              "name": {
+                "type": "string",
+                "maxLength": 36
+              }
+            },
             "required": true
           },
           {
             "name": "name",
             "in": "body",
+            "properties": {
+              "name": {
+                "type": "string",
+                "maxLength": 255
+              }
+            },
             "required": true
           }
         ],
@@ -62,6 +75,7 @@
           {
             "name": "id",
             "in": "path",
+            "type": "string",
             "required": true
           }
         ],
@@ -79,6 +93,7 @@
           {
             "name": "max",
             "in": "query",
+            "type": "string",
             "required": false
           }
         ],
@@ -87,7 +102,6 @@
       "post": {
         "tags": ["members"],
         "summary": "members",
-        "type": "string",
         "consumes": [
           "application/json"
         ],
@@ -95,6 +109,12 @@
           {
             "name": "name",
             "in": "body",
+            "properties": {
+              "name": {
+                "type": "string",
+                "maxLength": 255
+              }
+            },
             "required": true
           }
         ],

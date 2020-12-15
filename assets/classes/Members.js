@@ -99,7 +99,13 @@ let Members = class {
                 return db.query('UPDATE members SET name = ? WHERE id = ?', [name, id]);
             }
           })
-          .then(() => next(true))
+          // .then(() => next(true))
+          .then(() => {
+            next({ // if ok send result
+              id: id,
+              name: name
+            })
+          })
           .catch((err) => next(err));
       } else { // No name inserted
           next(new Error(config.errors.noNameValue));
