@@ -70,7 +70,7 @@ Restarts all stopped and running services.
 
 `npm start`: will run `nodemon app.js`. Nodemon package is needed. It provides live reload.
 
-`npm run start:node: will `node app.js`. No live reloa
+`npm run start:node`: will run `node app.js`. No live reloa
 
 
 ## CURL request: test the API using command lines
