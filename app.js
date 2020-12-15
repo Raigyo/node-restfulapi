@@ -6,7 +6,7 @@ const swaggerDocument = require('./assets/swagger.json');
 const {success, error, checkAndChange} = require('./assets/functions');
 const mysql = require('promise-mysql');
 const morgan  = require('morgan'); // use of morgan - dev
-const config = require('./assets/config-dev');
+const config = require('./assets/config-dev'); // use the content of _config-dev.docker.json
 
 mysql.createConnection({
   host: config.db.host,

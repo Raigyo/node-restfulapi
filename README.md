@@ -7,7 +7,73 @@
 
 ![Node Logo](_readme-img/nodejs-logo.png)
 
-## CURL request
+## Docker: MySql / PHPMyAdmin with persistant data
+
+- container = read-only
+- volume = stored locally and writable (dbdata:/var/lib/mysql)
+
+### Create config-dev.json
+
+To use API with docker file, rename *./assets/_config-dev.docker.json* by *config-dev.json*.
+
+### How to launch the docker file with database
+
+Note: you can change credentials in *docker-compose.yml* before creating the container.
+
+`docker-compose up -d`
+
+`docker-compose start`
+
+Launch PHPMyAdmin: [http://localhost:8081/](http://localhost:8081/)
+
+Login: *root*
+
+Password: *my_secret_password*
+
+Create database: *nodejs*
+
+Seed importing: [nodejs.sql](./_mysql-db/nodejs.sql)
+
+### Docker compose useful commands
+
+`docker-compose up -d`
+
+Builds, (re)creates, starts, and attaches to containers for a service. Detached mode: Run containers in the background, print new container names.
+
+`docker-compose rm`
+
+Removes stopped service containers.
+
+`docker volume rm <VOLUME_NAME>`
+
+Remove select volume.
+
+`docker volume ls`
+
+List all volumes.
+
+`docker-compose start`
+
+Starts existing containers for a service.
+
+`docker-compose stop`
+
+Stops running containers without removing them.
+
+`docker-compose restart`
+
+Restarts all stopped and running services.
+
+## Launch the app
+
+`npm install`: only the first time after cloning.
+
+`npm start`: will run `nodemon app.js`. Nodemon package is needed. It provides live reload.
+
+`npm run start:node: will `node app.js`. No live reloa
+
+
+## CURL request: test the API using command lines
 
 **GET ID**
 
@@ -33,9 +99,15 @@
 
 The following file can be imported in Postman to make CRUD operations test: [NodeJS-members.postman_collection.json](./_postman/NodeJS-members.postman_collection.json)
 
-![swagger capture](_readme-img/postman-01.png)
+![postman capture](_readme-img/postman-01.png)
 
 ## OpenAPI 3.0 / Swagger
+
+Swagger is an Interface Description Language for describing RESTful APIs expressed using JSON/YAML. Swagger is used together with a set of open-source software tools to design, build, document, and use RESTful web services. Swagger includes automated documentation, code generation (into many programming languages), and test-case generation.
+
+To use it with this app, just open [http://localhost:8080/api/v1/api-docs](http://localhost:8080/api/v1/api-docs).
+
+Below, the procedure to install it from scratch.
 
 ### express-oas-generator
 
@@ -43,13 +115,13 @@ Install: `npm i express-oas-generator`
 
 **app.js**
 ````js
-const expressOasGenerator = require('express-oas-generator'); // create json with api map
+const expressOasGenerator = require('express-oas-generator'); // new line
 
 // ...
 
   // Routing init
   const app = express();
-  expressOasGenerator.init(app, {});
+  expressOasGenerator.init(app, {}); // new line
 ````
 
 `npm start`
@@ -97,7 +169,7 @@ The file *swagger.json* can be edited to provide more accurate informations.
 
 In this repo: [swagger.json](./assets/swagger.json)
 
-See:
+See also:
 
 - [OpenAPI Specification](https://swagger.io/specification/)
 - [Swagger Editor](https://swagger.io/tools/swagger-editor/)
@@ -121,7 +193,7 @@ See:
 
 Note: not needed.
 
-Use instead in *app.js**:
+Use instead in *app.js*:
 
 ````js
 app.use(express.json()) // for parsing application/json
@@ -135,7 +207,7 @@ app.use(express.urlencoded({ extended: true })); // for parsing application/x-ww
 
 `npm i mysql`
 
-Used in developpment but replaced by *promise-mysql*.
+Used during developpment but replaced by *promise-mysql*.
 
 - [promise-mysql](https://www.npmjs.com/package/promise-mysql): Promise-mysql is a wrapper for mysqljs/mysql that wraps function calls with Bluebird promises.
 
@@ -156,7 +228,7 @@ Used in developpment but replaced by *promise-mysql*.
 
 [http://localhost:8080/api/v1/api-docs/](http://localhost:8080/api/v1/api-docs/)
 
-## Module creation on Github (exclude node_modules excepted one folder or file)
+## FYI: Module creation on Github (exclude node_modules excepted one folder or file)
 
 **.gitignore**
 
@@ -170,7 +242,7 @@ node_modules/**
 !/node_modules/module_creation/*
 ````
 
-## MySql 8 & NodeJS: mysql_native_password
+## FYI: MySql 8 & NodeJS: mysql_native_password
 
 ````sql
 CREATE USER 'user'@'localhost' IDENTIFIED BY 'password';
@@ -184,18 +256,11 @@ ALTER USER 'user'@'localhost' IDENTIFIED WITH mysql_native_password BY 'new_pass
 FLUSH PRIVILEGES;
 ````
 
-## Bash useful commands
-
-`sudo netstat -lpn |grep :8080`: check if port 8080 is used and display its PID.
-
-`sudo kill -9 <PID>`: kill the process used by PID.
-
-`sudo fuser -k 8080/tcp`: kill the port 8080.
-
-------------------
-
 ## Ressources
 
 - [MDN: Express web framework (Node.js/JavaScript)](https://developer.mozilla.org/en-US/docs/Learn/Server-side/Express_Nodejs)
 - [ExpressJS](https://expressjs.com/fr/)
 - [Swagger](https://swagger.io/)
+- [GitBook](https://www.gitbook.com/)
+- [Docker-compose for MySQL with phpMyAdmin](https://tecadmin.net/docker-compose-for-mysql-with-phpmyadmin/)
+- [Docker references](https://docs.docker.com/reference/)

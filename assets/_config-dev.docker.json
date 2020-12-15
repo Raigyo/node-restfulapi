@@ -3,10 +3,10 @@
   "port": 8080,
   "db": {
     "host": "localhost",
-    "port": "3306",
+    "port": "6033",
     "database": "nodejs",
-    "user": "<USERNAME>",
-    "password": "<PASSWORD>"
+    "user": "root",
+    "password": "my_secret_password"
   },
   "errors" : {
     "wrongID": "Wrong id",
@@ -16,3 +16,4 @@
     "sameName": "Same name"
   }
 }
+
