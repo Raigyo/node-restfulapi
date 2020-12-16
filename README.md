@@ -101,7 +101,7 @@ The following file can be imported in Postman to make CRUD operations test: [Nod
 
 ![postman capture](_readme-img/postman-01.png)
 
-## OpenAPI 3.0 / Swagger
+## Documentation: OpenAPI 3.0 / Swagger
 
 Swagger is an Interface Description Language for describing RESTful APIs expressed using JSON/YAML. Swagger is used together with a set of open-source software tools to design, build, document, and use RESTful web services. Swagger includes automated documentation, code generation (into many programming languages), and test-case generation.
 
@@ -177,7 +177,15 @@ See also:
 
 ![swagger capture](_readme-img/swagger-01.png)
 
+## Documentation: GitBook
+
+[Gitbook documentation](https://raigyo-api-rest.gitbook.io/documen/-MOfXc8mbW-fYGib3_sc/).
+
+[PDF version](./_gitbook/20201216-gitbook-members.pdf).
+
 ## Dependancies
+
+### Back-end
 
 - [express](https://www.npmjs.com/package/express): Fast, unopinionated, minimalist web framework for node.
 
@@ -228,6 +236,17 @@ Used during developpment but replaced by *promise-mysql*.
 
 [http://localhost:8080/api/v1/api-docs/](http://localhost:8080/api/v1/api-docs/)
 
+### Front-end
+
+- [twig](https://www.npmjs.com/package/twig): Twig.js is a pure JavaScript implementation of the Twig PHP templating language.
+
+`npm i twig`
+
+- [axios](https://www.npmjs.com/package/axios): Promise based HTTP client for the browser and node.js
+
+`npm i axios`
+
+
 ## FYI: Module creation on Github (exclude node_modules excepted one folder or file)
 
 **.gitignore**
@@ -256,6 +275,15 @@ ALTER USER 'user'@'localhost' IDENTIFIED WITH mysql_native_password BY 'new_pass
 FLUSH PRIVILEGES;
 ````
 
+## Bash useful commands
+
+`sudo netstat -lpn |grep :8080`: check if port 8080 is used and display its PID.
+
+`sudo kill -9 <PID>`: kill the process used by PID.
+
+`sudo fuser -k 8080/tcp`: kill the port 8080.
+
+
 ## Ressources
 
 - [MDN: Express web framework (Node.js/JavaScript)](https://developer.mozilla.org/en-US/docs/Learn/Server-side/Express_Nodejs)
@@ -264,3 +292,5 @@ FLUSH PRIVILEGES;
 - [GitBook](https://www.gitbook.com/)
 - [Docker-compose for MySQL with phpMyAdmin](https://tecadmin.net/docker-compose-for-mysql-with-phpmyadmin/)
 - [Docker references](https://docs.docker.com/reference/)
+- [Why Auto Increment Is A Terrible Idea](https://www.clever-cloud.com/blog/engineering/2015/05/20/why-auto-increment-is-a-terrible-idea/)
+- [Axios Handling Errors](https://github.com/axios/axios#handling-errors)

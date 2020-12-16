@@ -26,7 +26,7 @@ mysql.createConnection({
   // We use morgan to check url request in console
   app.use(morgan('dev'));
 
-  app.use(express.json()) // for parsing application/json
+  app.use(express.json()); // for parsing application/json
   app.use(express.urlencoded({ extended: true })); // for parsing application/x-www-form-urlencoded
   app.use(config.rootAPI+'api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 
