@@ -6,6 +6,7 @@ config-dev.json
 # Node modules excepted module creation
 
 node_modules/**
+./front/node_modules
 _async/node_modules/**
 # whitelist folder
 !/node_modules/module_creation/
