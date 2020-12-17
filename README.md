@@ -2,10 +2,15 @@
 
 *December 2020*
 
-> 🔨 From udemy '[Apprendre Node.js & Créer une API REST de A à Z !](https://www.udemy.com/course/nodejs-api-rest/)'.
+> 🔨 ResFul API in NodeJS to manage members. From udemy '[Apprendre Node.js & Créer une API REST de A à Z !](https://www.udemy.com/course/nodejs-api-rest/)'.
 
+This application is a simple resful API to manage members. There is also a front-end part to do it from client side.
 
 ![Node Logo](_readme-img/nodejs-logo.png)
+
+## Architecture
+
+
 
 ## Docker: MySql / PHPMyAdmin with persistant data
 
