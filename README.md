@@ -2,11 +2,18 @@
 
 *December 2020*
 
-> 🔨 ResFul API in NodeJS to manage members. From udemy '[Apprendre Node.js & Créer une API REST de A à Z !](https://www.udemy.com/course/nodejs-api-rest/)'.
-
-This application is a simple resful API to manage members (CRUD). There is also a front-end part to do it from client side to test the CRUD.
+> 🔨 ResFul API in NodeJS+Express to manage a list of members. From udemy '[Apprendre Node.js & Créer une API REST de A à Z !](https://www.udemy.com/course/nodejs-api-rest/)'.
 
 ![Node Logo](_readme-img/nodejs-logo.png)
+
+This application is a simple resful API to manage members (CRUD). There is also a front-end part to test the CRUD from client side.
+
+The backend part use a *Members* class containing request GET/PUT/POST/DELETE to MySQL database with promises
+*app.js* just call the right methods from *Members* using async/await. The idea is to have a clear, reausable and portable code without dozens of callbacks or SQL request in *app.js*.
+
+Front-end part also uses routes to web pages or to methods. It uses *Axios** for the request and *Twig* to generate templates.
+
+The APi has been documented using Swagger and Gitbook.
 
 ![front capture](_readme-img/front-01.png)
 
@@ -32,11 +39,17 @@ This application is a simple resful API to manage members (CRUD). There is also 
 app.js
 ````
 
+## Online versions
+
+- Front-end
+- Swagger documentation
+- [Gitbook documentation](https://raigyo-api-rest.gitbook.io/documen/-MOfXc8mbW-fYGib3_sc/).
+
 ## How to test locally
 
-### back-end
+### Back-end
 
-- Clone local-version branch: `git clone -b local-version git@github.com:Raigyo/node-restfulapi.git`
+- Clone [local-version branch](https://github.com/Raigyo/node-restfulapi/tree/local-version): `git clone -b local-version git@github.com:Raigyo/node-restfulapi.git`
 - `npm install`
 - Launch docker file with MySQL:
   - `docker-compose up -d`
@@ -56,7 +69,6 @@ app.js
 - `npm install`
 - `npm start` (nodemon) or `node app.js`
 - Open member list page: [http://localhost:8082/members](http://localhost:8082/members)
-
 
 # Useful informations about the application
 
