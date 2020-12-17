@@ -4,13 +4,61 @@
 
 > 🔨 ResFul API in NodeJS to manage members. From udemy '[Apprendre Node.js & Créer une API REST de A à Z !](https://www.udemy.com/course/nodejs-api-rest/)'.
 
-This application is a simple resful API to manage members. There is also a front-end part to do it from client side.
+This application is a simple resful API to manage members (CRUD). There is also a front-end part to do it from client side to test the CRUD.
 
 ![Node Logo](_readme-img/nodejs-logo.png)
 
+![front capture](_readme-img/front-01.png)
+
+![front capture](_readme-img/front-02.png)
+
 ## Architecture
 
+````
+-- assets
+    -- classes
+        Members.js
+    config-dev.json
+    functions.js
+    swagger.json
+-- front
+    views
+      edit.twig
+      error.twig
+      index.twig
+      insert.twig
+      member.twig
+      members.twig
+app.js
+````
 
+## How to test locally
+
+### back-end
+
+- Clone local-version branch: `git clone -b local-version git@github.com:Raigyo/node-restfulapi.git`
+- `npm install`
+- Launch docker file with MySQL:
+  - `docker-compose up -d`
+  - `docker-compose start`
+- Launch PHPMyAdmin: [http://localhost:8081/](http://localhost:8081/)
+  - Login: *root*
+  - Password: *my_secret_password* (litterally)
+  - Create database: *nodejs*
+  - Seed importing: *./_mysql-db/nodejs.sql*
+- Launch back-end from root: `npm start` (nodemon) or `node app.js`
+- Open: [http://localhost:8080/api/v1/members](http://localhost:8080/api/v1/members)
+- Test with Swagger: [http://localhost:8080/api/v1/api-docs](http://localhost:8080/api/v1/api-docs)
+
+### Front-end
+
+- Move to front-end par from another terminal:`cd front`
+- `npm install`
+- `npm start` (nodemon) or `node app.js`
+- Open member list page: [http://localhost:8082/members](http://localhost:8082/members)
+
+
+# Useful informations about the application
 
 ## Docker: MySql / PHPMyAdmin with persistant data
 
@@ -287,7 +335,6 @@ FLUSH PRIVILEGES;
 `sudo kill -9 <PID>`: kill the process used by PID.
 
 `sudo fuser -k 8080/tcp`: kill the port 8080.
-
 
 ## Ressources
 
