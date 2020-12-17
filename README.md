@@ -68,7 +68,7 @@ Restarts all stopped and running services.
 
 `npm install`: only the first time after cloning.
 
-`npm start`: will run `nodemon app.js`. Nodemon package is needed. It provides live reload.
+`npm start`: will run `nodemon app.js`. Nodemon package is needed. It provides live reload. To reload twig pages uses `rs`.
 
 `npm run start:node`: will run `node app.js`. No live reload.
 
