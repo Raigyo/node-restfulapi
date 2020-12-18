@@ -363,3 +363,4 @@ FLUSH PRIVILEGES;
 - [Why Auto Increment Is A Terrible Idea](https://www.clever-cloud.com/blog/engineering/2015/05/20/why-auto-increment-is-a-terrible-idea/)
 - [Axios Handling Errors](https://github.com/axios/axios#handling-errors)
 - [JSON to JavaScript Converter](https://dataformat.net/json/converter/to-javascript)
+- [Deploying/Hosting Node.js app on Heroku with MySQL database](https://bezkoder.com/deploy-node-js-app-heroku-cleardb-mysql/)
