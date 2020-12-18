@@ -2,7 +2,9 @@ package-lock.json
 mysql-apt-config_0.8.15-1_all.deb
 config.json
 config-dev.json
-
+config-prod.json
+config-prod.js
+.env
 # Node modules excepted module creation
 node_modules
 node_modules/**

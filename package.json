@@ -21,6 +21,7 @@
   "homepage": "https://github.com/Raigyo/node-restfulapi#readme",
   "dependencies": {
     "babel-register": "^6.26.0",
+    "dotenv": "^8.2.0",
     "express": "^4.17.1",
     "express-oas-generator": "^1.0.30",
     "promise-mysql": "^5.0.1",
