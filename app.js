@@ -8,21 +8,22 @@ const mysql = require('promise-mysql');
 //const morgan  = require('morgan'); // use of morgan - dev
 const config = require('./public/config');
 
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.API_PORT_PROD || 3000;
+const rootAPI = process.env.API_HOST_PROD;
 
 //mysql.createConnection({
 mysql.createPool({
-  host: config.db.host,
-  port: config.db.port,
-  database: config.db.database,
-  user: config.db.user,
-  password: config.db.password
+  host: process.env.DB_HOST_PROD,
+  port: process.env.DB_PORT_PROD,
+  database: process.env.DB_NAME_PROD,
+  user: process.env.DB_USER_PROD,
+  password: process.env.DB_PASSWORD_PROD
 }).then((db) => {
-  console.log('db - host:', host);
-  console.log('db - port:', port);
-  console.log('db - database:', database);
-  console.log('db - user:', user);
-  console.log('db - password:', password);
+  // console.log('db - host:', host);
+  // console.log('db - port:', port);
+  // console.log('db - database:', database);
+  // console.log('db - user:', user);
+  // console.log('db - password:', password);
   console.log('Connected to database');
 
   // Routing init
@@ -36,7 +37,7 @@ mysql.createPool({
 
   app.use(express.json()); // for parsing application/json
   app.use(express.urlencoded({ extended: true })); // for parsing application/x-www-form-urlencoded
-  app.use(config.rootAPI+'api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
+  app.use(rootAPI+'api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 
   // Route /:id
   MembersRouter.route('/:id')
@@ -78,11 +79,11 @@ mysql.createPool({
   //\Route /
 
   // Middleware for routes: path
-  app.use(config.rootAPI+'members', MembersRouter);
+  app.use(rootAPI+'members', MembersRouter);
 
   // Port listening
   app.listen(PORT, () => console.log(
-    'Started on :'+config.rootAPI+'members')
+    'Started on :'+rootAPI+'members')
   );
 }) // \ .then
 .catch((err) => {
