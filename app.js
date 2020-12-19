@@ -10,7 +10,8 @@ const config = require('./public/config');
 
 console.log(config);
 
-mysql.createConnection({
+//mysql.createConnection({
+mysql.createPool({
   host: config.db.host,
   port: config.db.port,
   database: config.db.database,

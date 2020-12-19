@@ -1,6 +1,6 @@
 require("dotenv").config();
 
-const env = process.env.NODE_ENV || "production"
+const env = process.env.NODE_ENV || "production";
 
 const configs = {
   base: {
@@ -26,7 +26,7 @@ const configs = {
   },
   production: {
     rootAPI: process.env.API_HOST_PROD,
-    port: process.env.API_PORT_PROD,
+    port: process.env.API_PORT_PROD || 3000,
     db: {
         host: process.env.DB_HOST_PROD,
         port: process.env.DB_PORT_PROD,
