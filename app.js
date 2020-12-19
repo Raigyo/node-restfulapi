@@ -2,14 +2,14 @@ require("babel-register"); // ES6 conversion
 const express = require('express');
 // const expressOasGenerator = require('express-oas-generator'); // create json with api map
 const swaggerUi = require('swagger-ui-express');
-const swaggerDocument = require('./public/swagger.json');
+const swaggerDocument = require('./public/swagger-prod.json');
 const {success, error, checkAndChange} = require('./public/functions');
 const mysql = require('promise-mysql');
 //const morgan  = require('morgan'); // use of morgan - dev
-// const config = require('./public/config');
+const config = require('./public/config');
 
-const PORT = process.env.API_PORT_PROD || 3000;
-const rootAPI = process.env.API_HOST_PROD;
+// const PORT = process.env.API_PORT_PROD || 3000;
+// const rootAPI = process.env.API_HOST_PROD;
 
 //mysql.createConnection({
 mysql.createPool({
@@ -77,8 +77,8 @@ mysql.createPool({
   app.use(rootAPI+'members', MembersRouter);
 
   // Port listening
-  app.listen(process.env.PORT || 5000, () => console.log(
-    'Started on port '+process.env.PORT+': '+rootAPI+'members')
+  app.listen(portAPI, () => console.log(
+    'Started on port '+portAPI+': '+rootAPI+'members')
   );
 }) // \ .then
 .catch((err) => {

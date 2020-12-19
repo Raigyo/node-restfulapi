@@ -1,0 +1,126 @@
+{
+  "info": {
+    "title": "API REST documentation",
+    "version": "1.0.0",
+    "license": {
+      "name": "ISC"
+    },
+    "description": "API REST to manage users"
+  },
+  "basePath": "/",
+  "host": "https://raigyo-node-members.herokuapp.com",
+  "tags": [
+    {
+      "name": "members",
+      "description": "Methods for managing users"
+    }
+  ],
+  "paths": {
+    "/members/{id}": {
+      "get": {
+        "tags": ["members"],
+        "summary": "members/{id}",
+        "consumes": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "type": "string",
+            "required": true
+          }
+        ],
+        "responses": {}
+      },
+      "put": {
+        "tags": ["members"],
+        "summary": "members/{id}",
+        "consumes": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "properties": {
+              "name": {
+                "type": "string",
+                "maxLength": 36
+              }
+            },
+            "required": true
+          },
+          {
+            "name": "name",
+            "in": "body",
+            "properties": {
+              "name": {
+                "type": "string",
+                "maxLength": 255
+              }
+            },
+            "required": true
+          }
+        ],
+        "responses": {}
+      },
+      "delete": {
+        "tags": ["members"],
+        "summary": "members/{id}",
+        "consumes": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "type": "string",
+            "required": true
+          }
+        ],
+        "responses": {}
+      }
+    },
+    "/members": {
+      "get": {
+        "tags": ["members"],
+        "summary": "members",
+        "consumes": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "max",
+            "in": "query",
+            "type": "string",
+            "required": false
+          }
+        ],
+        "responses": {}
+      },
+      "post": {
+        "tags": ["members"],
+        "summary": "members",
+        "consumes": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "name",
+            "in": "body",
+            "properties": {
+              "name": {
+                "type": "string",
+                "maxLength": 255
+              }
+            },
+            "required": true
+          }
+        ],
+        "responses": {}
+      }
+    }
+  },
+  "swagger": "2.0"
+}
