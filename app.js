@@ -1,5 +1,6 @@
 require("babel-register"); // ES6 conversion
 const express = require('express');
+const config = require('./public/config');
 // const expressOasGenerator = require('express-oas-generator'); // create json with api map
 const swaggerUi = require('swagger-ui-express');
 const swaggerDocument = require('./public/swagger-prod.json');
@@ -9,7 +10,7 @@ if (config.env === "development")
 {
   const morgan  = require('morgan'); // use of morgan - dev
 }
-const config = require('./public/config');
+
 
 
 console.log("Environment: ", config.env)
