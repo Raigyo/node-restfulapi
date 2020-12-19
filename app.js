@@ -5,11 +5,14 @@ const swaggerUi = require('swagger-ui-express');
 const swaggerDocument = require('./public/swagger-prod.json');
 const {checkAndChange} = require('./public/functions');
 const mysql = require('promise-mysql');
-if (NODE_ENV === "development")
+if (process.env.NODE_ENV === "development")
 {
   const morgan  = require('morgan'); // use of morgan - dev
 }
 const config = require('./public/config');
+
+
+console.log("Environment: ", process.env.NODE_ENV)
 
 //mysql.createConnection({
 mysql.createPool({
@@ -28,7 +31,7 @@ mysql.createPool({
   let Members = require('./public/classes/Members')(db);
 
   // We use morgan to check url request in console
-  if (NODE_ENV === "development")
+  if (process.env.NODE_ENV === "development")
   {
     app.use(morgan('dev'));
   }
@@ -79,15 +82,15 @@ mysql.createPool({
   // Middleware for routes: path
   app.use(config.rootAPI+'members', MembersRouter);
 
-  // Port listening
-  if (NODE_ENV === "development")
+  // Port listening dev
+  if (process.env.NODE_ENV === "development")
   {
     app.listen(config.portAPI, () => console.log(
       'Started on port '+config.portAPI+': '+config.rootAPI+'members')
     );
   }
   // Port listening HEROKU
-  if (NODE_ENV === "production")
+  if (process.env.NODE_ENV === "production")
   {
     app.listen(process.env.PORT || 5000, () => console.log(
       'Started on port '+process.env.PORT +': '+config.rootAPI+'members')
