@@ -33,47 +33,47 @@ mysql.createPool({
   app.use(express.urlencoded({ extended: true })); // for parsing application/x-www-form-urlencoded
   app.use(config.rootAPI+'api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 
-  app.get("/", async (req, res) => {
-    let allMembers = await Members.getAll(req.query.max);
-     res.json(checkAndChange(allMembers));
-  })
+  // app.get("/", async (req, res) => {
+  //   let allMembers = await Members.getAll(req.query.max);
+  //    res.json(checkAndChange(allMembers));
+  // })
 
-  // // Route /:id
-  // MembersRouter.route('/:id')
-  //   // GET - id
-  //   .get(async (req, res) => {
-  //     let member = await Members.getByID(req.params.id);
-  //     res.json(checkAndChange(member));
-  //   })// \GET - id
+  // Route /:id
+  MembersRouter.route('/:id')
+    // GET - id
+    .get(async (req, res) => {
+      let member = await Members.getByID(req.params.id);
+      res.json(checkAndChange(member));
+    })// \GET - id
 
-  //   // PUT
-  //   .put(async(req, res) => {
-  //     let updateMember = await Members.update(req.params.id, req.body.name);
-  //     res.json(checkAndChange(updateMember));
-  //   })// \PUT
+    // PUT
+    .put(async(req, res) => {
+      let updateMember = await Members.update(req.params.id, req.body.name);
+      res.json(checkAndChange(updateMember));
+    })// \PUT
 
-  //   // DELETE
-  //   .delete(async(req, res) => {
-  //     let updateMember = await Members.delete(req.params.id);
-  //     res.json(checkAndChange(updateMember));
-  //   })// \DELETE
-  // //\Route /:id
+    // DELETE
+    .delete(async(req, res) => {
+      let updateMember = await Members.delete(req.params.id);
+      res.json(checkAndChange(updateMember));
+    })// \DELETE
+  //\Route /:id
 
-  // // Route /
-  // MembersRouter.route('/')
-  //   // GET
-  //   .get(async (req, res) => {
-  //     let allMembers = await Members.getAll(req.query.max);
-  //     res.json(checkAndChange(allMembers));
-  //   })// \GET
+  // Route /
+  MembersRouter.route('/')
+    // GET
+    .get(async (req, res) => {
+      let allMembers = await Members.getAll(req.query.max);
+      res.json(checkAndChange(allMembers));
+    })// \GET
 
-  //   // POST
-  //   .post(async(req, res) => {
-  //     let addMember = await Members.add(req.body.name);
-  //     res.json(checkAndChange(addMember));
-  //   })// \POST
+    // POST
+    .post(async(req, res) => {
+      let addMember = await Members.add(req.body.name);
+      res.json(checkAndChange(addMember));
+    })// \POST
 
-  // //\Route /
+  //\Route /
 
   // Middleware for routes: path
     app.use(config.rootAPI+'members', MembersRouter);
