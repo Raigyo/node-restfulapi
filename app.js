@@ -59,6 +59,7 @@ mysql.createPool({
     // GET
     .get(async (req, res) => {
       let allMembers = await Members.getAll(req.query.max);
+      console.log(allMembers);
       res.json(checkAndChange(allMembers));
     })// \GET
 
