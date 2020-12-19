@@ -8,12 +8,12 @@ const {checkAndChange} = require('./public/functions');
 const mysql = require('promise-mysql');
 if (config.env === "development") {const morgan  = require('morgan')}; // use of morgan - dev
 
-console.log("Environment: ", config.env)
+console.log("Environment: ", config.env); // MSG for Heroku
 
-// use config.js using async
-// change swagger json
-// switch swagger dev vs prod json
 // change route "/" to "members"
+// use config.js using async
+// switch swagger dev vs prod json
+// change swagger json for prod
 
 mysql.createPool({
   host: process.env.DB_HOST_PROD,
@@ -22,7 +22,7 @@ mysql.createPool({
   user: process.env.DB_USER_PROD,
   password: process.env.DB_PASSWORD_PROD
 }).then((db) => {
-  console.log('Connected to database');
+  console.log('Connected to database'); // MSG for Heroku
 
   // Routing init
   const app = express();
@@ -37,7 +37,7 @@ mysql.createPool({
   app.use(express.urlencoded({ extended: true })); // for parsing application/x-www-form-urlencoded
   app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
   //app.use(process.env.API_HOST_PROD + 'api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
-  console.log(process.env.API_HOST_PROD + 'api-docs');
+  console.log(process.env.API_HOST_PROD + 'api-docs'); // MSG for Heroku
 
   // Route "/"
     // GET
