@@ -78,7 +78,7 @@ mysql.createPool({
 
   // Port listening
   app.listen(PORT, () => console.log(
-    'Started on :'+rootAPI+'members')
+    'Started on port '+PORT+': '+rootAPI+'members')
   );
 }) // \ .then
 .catch((err) => {
