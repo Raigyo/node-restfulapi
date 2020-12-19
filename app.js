@@ -3,7 +3,7 @@ const express = require('express');
 const config = require('./public/config');
 // const expressOasGenerator = require('express-oas-generator'); // create json with api map
 const swaggerUi = require('swagger-ui-express');
-if (config.env === "production") {
+if (process.env.NODE_ENV === "production") {
   const swaggerDocument = require('./public/swagger-prod.json');
 } else {
   const swaggerDocument = require('./public/swagger.json');
