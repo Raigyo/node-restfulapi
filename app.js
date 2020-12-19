@@ -8,17 +8,22 @@ const mysql = require('promise-mysql');
 //const morgan  = require('morgan'); // use of morgan - dev
 const config = require('./public/config');
 
-console.log(config);
+const PORT = process.env.PORT || 3000;
 
 //mysql.createConnection({
 mysql.createPool({
   host: config.db.host,
-  // port: config.db.port,
+  port: config.db.port,
   database: config.db.database,
   user: config.db.user,
   password: config.db.password
 }).then((db) => {
-  console.log('Connected to database')
+  console.log('db - host:', host);
+  console.log('db - port:', port);
+  console.log('db - database:', database);
+  console.log('db - user:', user);
+  console.log('db - password:', password);
+  console.log('Connected to database');
 
   // Routing init
   const app = express();
@@ -76,7 +81,7 @@ mysql.createPool({
   app.use(config.rootAPI+'members', MembersRouter);
 
   // Port listening
-  app.listen(config.port, () => console.log(
+  app.listen(PORT, () => console.log(
     'Started on :'+config.rootAPI+'members')
   );
 }) // \ .then
