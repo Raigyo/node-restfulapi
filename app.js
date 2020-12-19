@@ -33,32 +33,10 @@ mysql.createPool({
   app.use(express.urlencoded({ extended: true })); // for parsing application/x-www-form-urlencoded
   app.use(config.rootAPI+'api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 
-  // app.get("/", async (req, res) => {
-  //   let allMembers = await Members.getAll(req.query.max);
-  //    res.json(checkAndChange(allMembers));
-  // })
-
-  // Route /
-  MembersRouter.route('/')
-    // GET
-    .get(async (req, res) => {
-        let allMembers = await Members.getAll(req.query.max);
-        res.json(checkAndChange(allMembers));
-    })// \GET
-
-    // POST
-    .post(async(req, res) => {
-      let addMember = await Members.add(req.body.name);
-      res.json(checkAndChange(addMember));
-    })// \POST
-
-  // Route /:id
-  MembersRouter.route('/:id')
-    // GET - id
-    .get(async (req, res) => {
-      let member = await Members.getByID(req.params.id);
-      res.json(checkAndChange(member));
-    })// \GET - id
+  app.get("/", async (req, res) => {
+    let allMembers = await Members.getAll(req.query.max);
+     res.json(checkAndChange(allMembers));
+  })
 
   // // Route /:id
   // MembersRouter.route('/:id')
