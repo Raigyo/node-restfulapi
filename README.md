@@ -42,7 +42,7 @@ app.js
 ## Online versions
 
 - Front-end
-- Swagger documentation
+- [Swagger documentation](https://raigyo-node-members.herokuapp.com/api-docs/)
 - [Gitbook documentation](https://raigyo-api-rest.gitbook.io/documen/-MOfXc8mbW-fYGib3_sc/).
 
 ## How to test locally

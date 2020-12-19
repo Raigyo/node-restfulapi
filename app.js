@@ -11,6 +11,9 @@ if (config.env === "development") {const morgan  = require('morgan')}; // use of
 console.log("Environment: ", config.env)
 
 // use config.js using async
+// change swagger json
+// switch swagger dev vs prod json
+// change route "/" to "members"
 
 mysql.createPool({
   host: process.env.DB_HOST_PROD,
