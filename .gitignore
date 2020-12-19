@@ -5,6 +5,7 @@ config-dev.json
 config-prod.json
 config-prod.js
 .env
+_.env
 # Node modules excepted module creation
 node_modules
 node_modules/**
