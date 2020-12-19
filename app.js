@@ -64,10 +64,8 @@ mysql.createPool({
 
     // POST
     .post(async(req, res) => {
-
       let addMember = await Members.add(req.body.name);
       res.json(checkAndChange(addMember));
-
     })// \POST
 
   //\Route /

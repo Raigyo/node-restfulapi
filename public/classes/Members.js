@@ -30,7 +30,7 @@ let Members = class {
 
   // GET - all
   static getAll(max) {
-
+    console.log("Class members - get all")
     return new Promise((next) => {
       if (max != undefined && max > 0) { // send promise to get all members
         db.query('SELECT * FROM members LIMIT 0, ?', [parseInt(max)])
