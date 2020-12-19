@@ -10,7 +10,6 @@ if (config.env === "development") {const morgan  = require('morgan')}; // use of
 
 console.log("Environment: ", config.env)
 
-//mysql.createConnection({
 mysql.createPool({
   host: process.env.DB_HOST_PROD,
   port: process.env.DB_PORT_PROD,
@@ -31,7 +30,8 @@ mysql.createPool({
 
   app.use(express.json()); // for parsing application/json
   app.use(express.urlencoded({ extended: true })); // for parsing application/x-www-form-urlencoded
-  app.use(config.rootAPI+'api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
+  app.use(process.env.API_HOST_PROD + 'api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
+  console.log(process.env.API_HOST_PROD + 'api-docs');
 
   // Route "/"
     // GET
