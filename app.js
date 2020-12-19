@@ -18,7 +18,7 @@ mysql.createPool({
   user: config.db.user,
   password: config.db.password
 }).then((db) => {
-  console.log('Connected')
+  console.log('Connected to database')
 
   // Routing init
   const app = express();
@@ -77,7 +77,7 @@ mysql.createPool({
 
   // Port listening
   app.listen(config.port, () => console.log(
-    'Started on port '+config.port+': http://localhost:'+config.port+config.rootAPI+'members')
+    'Started on port '+config.port+':'+config.port+config.rootAPI+'members')
   );
 }) // \ .then
 .catch((err) => {
