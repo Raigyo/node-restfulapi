@@ -26,7 +26,7 @@ const configs = {
   },
   production: {
     rootAPI: process.env.API_HOST_PROD,
-    port: process.env.API_PORT_PROD || 3000,
+    port: process.env.API_PORT_PROD,
     db: {
         host: process.env.DB_HOST_PROD,
         //port: process.env.DB_PORT_PROD,
