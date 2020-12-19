@@ -15,7 +15,7 @@ const configs = {
   },
   development: {
     rootAPI: process.env.API_HOST_DEV,
-    port: process.env.API_PORT_DEV,
+    portAPI: process.env.API_PORT_DEV,
     db: {
         host: process.env.DB_HOST_DEV,
         port: process.env.DB_PORT_DEV,
