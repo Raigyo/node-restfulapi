@@ -58,9 +58,9 @@ mysql.createPool({
   MembersRouter.route('/')
     // GET
     .get(async (req, res) => {
-      let allMembers = await Members.getAll(req.query.max);
-      console.log(allMembers);
-      res.json(checkAndChange(allMembers));
+      //let allMembers = await Members.getAll(req.query.max);
+      console.log(req);
+      //res.json(checkAndChange(allMembers));
     })// \GET
 
     // POST
