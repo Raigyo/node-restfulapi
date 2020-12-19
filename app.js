@@ -74,8 +74,8 @@ mysql.createPool({
   app.use(config.rootAPI+'members', MembersRouter);
 
   // Port listening
-  app.listen(portAPI, () => console.log(
-    'Started on port '+portAPI+': '+config.rootAPI+'members')
+  app.listen(config.portAPI, () => console.log(
+    'Started on port '+config.portAPI+': '+config.rootAPI+'members')
   );
 }) // \ .then
 .catch((err) => {
