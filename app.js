@@ -5,7 +5,7 @@ const swaggerUi = require('swagger-ui-express');
 const swaggerDocument = require('./public/swagger.json');
 const {success, error, checkAndChange} = require('./public/functions');
 const mysql = require('promise-mysql');
-const morgan  = require('morgan'); // use of morgan - dev
+//const morgan  = require('morgan'); // use of morgan - dev
 const config = require('./public/config');
 
 console.log(config);
@@ -27,7 +27,7 @@ mysql.createPool({
   let Members = require('./public/classes/Members')(db, config);
 
   // We use morgan to check url request in console
-  app.use(morgan('dev'));
+  //app.use(morgan('dev'));
 
   app.use(express.json()); // for parsing application/json
   app.use(express.urlencoded({ extended: true })); // for parsing application/x-www-form-urlencoded
