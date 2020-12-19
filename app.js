@@ -6,7 +6,7 @@ const swaggerUi = require('swagger-ui-express');
 const swaggerDocument = require('./public/swagger-prod.json');
 const {checkAndChange} = require('./public/functions');
 const mysql = require('promise-mysql');
-if (config.env === "development") const morgan  = require('morgan'); // use of morgan - dev
+if (config.env === "development") {const morgan  = require('morgan')}; // use of morgan - dev
 
 console.log("Environment: ", config.env)
 
@@ -27,7 +27,7 @@ mysql.createPool({
   let Members = require('./public/classes/Members')(db, config);
 
   // We use morgan to check url request in console
-  if (config.env === "development") app.use(morgan('dev'));
+  if (config.env === "development") {app.use(morgan('dev'))};
 
   app.use(express.json()); // for parsing application/json
   app.use(express.urlencoded({ extended: true })); // for parsing application/x-www-form-urlencoded
