@@ -59,7 +59,7 @@ mysql.createPool({
     // GET
     .get(async (req, res) => {
       //let allMembers = await Members.getAll(req.query.max);
-      console.log(req);
+      res.status(200).send("Hi, It works!")
       //res.json(checkAndChange(allMembers));
     })// \GET
 
@@ -74,6 +74,7 @@ mysql.createPool({
   // Middleware for routes: path
   if (process.env.NODE_ENV === 'production') {
     app.use(express.static(config.rootAPI+'members', MembersRouter));
+    app.use(express.static(__dirname + '/public'));
   } else {
     app.use(config.rootAPI+'members', MembersRouter);
   }
