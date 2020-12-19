@@ -71,7 +71,11 @@ mysql.createPool({
   //\Route /
 
   // Middleware for routes: path
-  app.use(config.rootAPI+'members', MembersRouter);
+  if (process.env.NODE_ENV === 'production') {
+    app.use(express.static(config.rootAPI+'members', MembersRouter));
+  } else {
+    app.use(config.rootAPI+'members', MembersRouter);
+  }
 
   // Port listening dev
   if (config.env === "development") {
