@@ -6,12 +6,7 @@ const swaggerUi = require('swagger-ui-express');
 const swaggerDocument = require('./public/swagger-prod.json');
 const {checkAndChange} = require('./public/functions');
 const mysql = require('promise-mysql');
-if (config.env === "development")
-{
-  const morgan  = require('morgan'); // use of morgan - dev
-}
-
-
+if (config.env === "development") const morgan  = require('morgan'); // use of morgan - dev
 
 console.log("Environment: ", config.env)
 
@@ -29,13 +24,10 @@ mysql.createPool({
   const app = express();
   // expressOasGenerator.init(app, {});
   let MembersRouter = express.Router();
-  let Members = require('./public/classes/Members')(db);
+  let Members = require('./public/classes/Members')(db, config);
 
   // We use morgan to check url request in console
-  if (config.env === "development")
-  {
-    app.use(morgan('dev'));
-  }
+  if (config.env === "development") app.use(morgan('dev'));
 
   app.use(express.json()); // for parsing application/json
   app.use(express.urlencoded({ extended: true })); // for parsing application/x-www-form-urlencoded
@@ -84,19 +76,17 @@ mysql.createPool({
   app.use(config.rootAPI+'members', MembersRouter);
 
   // Port listening dev
-  if (config.env === "development")
-  {
+  if (config.env === "development") {
     app.listen(config.portAPI, () => console.log(
       'Started on port '+config.portAPI+': '+config.rootAPI+'members')
     );
-  }
+  };
   // Port listening HEROKU
-  if (config.env === "production")
-  {
+  if (config.env === "production") {
     app.listen(process.env.PORT || 5000, () => console.log(
       'Started on port '+process.env.PORT +': '+config.rootAPI+'members')
     );
-  }
+  };
 }) // \ .then
 .catch((err) => {
   console.log('Error during database connection: ' + err.message);
