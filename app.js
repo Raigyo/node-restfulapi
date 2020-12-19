@@ -19,18 +19,13 @@ mysql.createPool({
   user: process.env.DB_USER_PROD,
   password: process.env.DB_PASSWORD_PROD
 }).then((db) => {
-  // console.log('db - host:', host);
-  // console.log('db - port:', port);
-  // console.log('db - database:', database);
-  // console.log('db - user:', user);
-  // console.log('db - password:', password);
   console.log('Connected to database');
 
   // Routing init
   const app = express();
   // expressOasGenerator.init(app, {});
   let MembersRouter = express.Router();
-  let Members = require('./public/classes/Members')(db, config);
+  let Members = require('./public/classes/Members')(db);
 
   // We use morgan to check url request in console
   //app.use(morgan('dev'));
