@@ -364,3 +364,4 @@ FLUSH PRIVILEGES;
 - [Axios Handling Errors](https://github.com/axios/axios#handling-errors)
 - [JSON to JavaScript Converter](https://dataformat.net/json/converter/to-javascript)
 - [Deploying/Hosting Node.js app on Heroku with MySQL database](https://bezkoder.com/deploy-node-js-app-heroku-cleardb-mysql/)
+- [Configure Swagger For Node.js Backend API Endpoints on Heroku](https://medium.com/@thankgodukachukwu/configure-swagger-for-node-js-backend-api-endpoints-on-heroku-f17ddeaa18c7)

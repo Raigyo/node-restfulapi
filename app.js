@@ -3,12 +3,18 @@ const express = require('express');
 const config = require('./public/config');
 // const expressOasGenerator = require('express-oas-generator'); // create json with api map
 const swaggerUi = require('swagger-ui-express');
-const swaggerDocument = require('./public/swagger-prod.json');
+if (config.env === "production") {
+  const swaggerDocument = require('./public/swagger-prod.json');
+} else {
+  const swaggerDocument = require('./public/swagger.json');
+}
 const {checkAndChange} = require('./public/functions');
 const mysql = require('promise-mysql');
 if (config.env === "development") {const morgan  = require('morgan')}; // use of morgan - dev
 
 console.log("Environment: ", config.env)
+
+// use config.js using async
 
 mysql.createPool({
   host: process.env.DB_HOST_PROD,
@@ -30,7 +36,7 @@ mysql.createPool({
 
   app.use(express.json()); // for parsing application/json
   app.use(express.urlencoded({ extended: true })); // for parsing application/x-www-form-urlencoded
-  app.use(process.env.API_HOST_PROD + 'api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
+  app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
   console.log(process.env.API_HOST_PROD + 'api-docs');
 
   // Route "/"
