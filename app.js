@@ -6,7 +6,7 @@ const swaggerDocument = require('./public/swagger.json');
 const {success, error, checkAndChange} = require('./public/functions');
 const mysql = require('promise-mysql');
 //const morgan  = require('morgan'); // use of morgan - dev
-const config = require('./public/config');
+// const config = require('./public/config');
 
 const PORT = process.env.API_PORT_PROD || 3000;
 const rootAPI = process.env.API_HOST_PROD;
