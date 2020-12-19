@@ -12,7 +12,7 @@ console.log("Environment: ", config.env)
 
 //mysql.createConnection({
 mysql.createPool({
-  host: config.db.DB_HOST_PROD,
+  host: process.env.DB_HOST_PROD,
   port: config.db.DB_PORT_PROD,
   database: config.db.DB_NAME_PROD,
   user: config.db.DB_USER_PROD,
@@ -76,12 +76,8 @@ mysql.createPool({
   // //\Route /
 
   // Middleware for routes: path
-  // if (process.env.NODE_ENV === 'production') {
-  //   app.use(express.static(config.rootAPI+'members', MembersRouter));
-  //   app.use(express.static(__dirname + '/public'));
-  // } else {
     app.use(config.rootAPI+'members', MembersRouter);
-  // }
+ 
 
   // Port listening dev
   if (config.env === "development") {
