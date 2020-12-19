@@ -13,10 +13,10 @@ console.log("Environment: ", config.env)
 //mysql.createConnection({
 mysql.createPool({
   host: process.env.DB_HOST_PROD,
-  port: config.db.DB_PORT_PROD,
-  database: config.db.DB_NAME_PROD,
-  user: config.db.DB_USER_PROD,
-  password: config.db.DB_PASSWORD_PROD
+  port: process.env.DB_PORT_PROD,
+  database: process.env.DB_NAME_PROD,
+  user: process.env.DB_USER_PROD,
+  password: process.env.DB_PASSWORD_PROD
 }).then((db) => {
   console.log('Connected to database');
 
