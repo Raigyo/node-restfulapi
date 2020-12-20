@@ -3,12 +3,12 @@ const express = require('express');
 const mysql = require('promise-mysql');
 const config = require('./public/config');
 const {checkAndChange} = require('./public/functions');
-const swaggerUi = require('swagger-ui-express');
 if (config.env === "production") {
-  console.log("Environment: ", config.env); // MSG for Heroku
+  console.log("Environment:", config.env); // MSG for Heroku
+  const swaggerUi = require('swagger-ui-express');
   const swaggerDocument = require('./public/swagger-prod.json');
 } else if (config.env === "development") {
-  console.log("Environment: ", config.env); // MSG for Heroku
+  console.log("Environment:", config.env); // MSG for Heroku
   const swaggerDocument = require('./public/swagger.json');
   const morgan  = require('morgan'); // use of morgan - dev
 };
