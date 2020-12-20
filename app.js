@@ -7,8 +7,10 @@ if (config.env === "production") {
   console.log("Environment:", config.env); // MSG for Heroku
   const swaggerUi = require('swagger-ui-express');
   const swaggerDocument = require('./public/swagger-prod.json');
-} else if (config.env === "development") {
+};
+if (config.env === "development") {
   console.log("Environment:", config.env); // MSG for Heroku
+  const swaggerUi = require('swagger-ui-express');
   const swaggerDocument = require('./public/swagger.json');
   const morgan  = require('morgan'); // use of morgan - dev
 };
