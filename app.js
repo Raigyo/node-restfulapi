@@ -3,18 +3,9 @@ const express = require('express');
 const mysql = require('promise-mysql');
 const config = require('./public/config');
 const {checkAndChange} = require('./public/functions');
-if (config.env === "production") {
-  console.log("Environment:", config.env); // MSG for Heroku
-  const swaggerUi = require('swagger-ui-express');
-  const swaggerDocument = require('./public/swagger-prod.json');
-};
-if (config.env === "development") {
-  console.log("Environment:", config.env); // MSG for Heroku
-  const swaggerUi = require('swagger-ui-express');
-  const swaggerDocument = require('./public/swagger.json');
-  const morgan  = require('morgan'); // use of morgan - dev
-};
-// if (config.env === "development") {const morgan  = require('morgan')}; // use of morgan - dev
+const swaggerUi = require('swagger-ui-express');
+const swaggerDocument = require('./public/swagger-'+config.env+'.json');
+if (config.env === "development") {const morgan  = require('morgan')}; // use of morgan - dev
 
 // use config.js using async
 // switch swagger dev vs prod json
