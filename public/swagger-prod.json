@@ -7,7 +7,6 @@
     },
     "description": "API REST to manage users"
   },
-  "basePath": "/",
   "host": "raigyo-node-members.herokuapp.com",
   "tags": [
     {

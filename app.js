@@ -35,7 +35,7 @@ mysql.createPool({
 
   app.use(express.json()); // for parsing application/json
   app.use(express.urlencoded({ extended: true })); // for parsing application/x-www-form-urlencoded
-  app.use('/', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
+  app.use(process.env.API_HOST_PROD), swaggerUi.serve, swaggerUi.setup(swaggerDocument));
   //app.use(process.env.API_HOST_PROD + 'api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
   console.log(process.env.API_HOST_PROD); // MSG for Heroku
 
