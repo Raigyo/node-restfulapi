@@ -1,19 +1,24 @@
 require("babel-register"); // ES6 conversion
 const express = require('express');
-const config = require('./public/config');
-// const expressOasGenerator = require('express-oas-generator'); // create json with api map
-const swaggerUi = require('swagger-ui-express');
-const swaggerDocument = require('./public/swagger-prod.json');
-const {checkAndChange} = require('./public/functions');
 const mysql = require('promise-mysql');
-if (config.env === "development") {const morgan  = require('morgan')}; // use of morgan - dev
+const config = require('./public/config');
+const {checkAndChange} = require('./public/functions');
+const swaggerUi = require('swagger-ui-express');
+if (config.env === "production") {
+  console.log("Environment: ", config.env); // MSG for Heroku
+  const swaggerDocument = require('./public/swagger-prod.json');
+} else if (config.env === "development") {
+  console.log("Environment: ", config.env); // MSG for Heroku
+  const swaggerDocument = require('./public/swagger.json');
+  const morgan  = require('morgan'); // use of morgan - dev
+};
+// if (config.env === "development") {const morgan  = require('morgan')}; // use of morgan - dev
 
-console.log("Environment: ", config.env); // MSG for Heroku
-
-// change route "/" to "members"
 // use config.js using async
 // switch swagger dev vs prod json
-// change swagger json for prod
+
+
+// DB connexion - OK: launch app / KO: catch error
 
 mysql.createPool({
   host: process.env.DB_HOST_PROD,
