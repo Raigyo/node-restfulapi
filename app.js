@@ -35,19 +35,19 @@ mysql.createPool({
 
   app.use(express.json()); // for parsing application/json
   app.use(express.urlencoded({ extended: true })); // for parsing application/x-www-form-urlencoded
-  app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
+  app.use('/', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
   //app.use(process.env.API_HOST_PROD + 'api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
-  console.log(process.env.API_HOST_PROD + 'api-docs'); // MSG for Heroku
+  console.log(process.env.API_HOST_PROD); // MSG for Heroku
 
   // Route "/"
     // GET
-    app.get("/", async (req, res) => {
+    app.get("/members", async (req, res) => {
       let allMembers = await Members.getAll(req.query.max);
       res.json(checkAndChange(allMembers));
     })
 
    // POST
-    app.post("/", async(req, res) => {
+    app.post("/members", async(req, res) => {
       let addMember = await Members.add(req.body.name);
       res.json(checkAndChange(addMember));
     })// \POST
@@ -55,17 +55,17 @@ mysql.createPool({
 
   // Route "/:id"
     // GET - id
-    app.get("/:id", async (req, res) => {
+    app.get("/members/:id", async (req, res) => {
         let member = await Members.getByID(req.params.id);
         res.json(checkAndChange(member));
     })// \GET - id
    // PUT
-    app.put("/:id", async(req, res) => {
+    app.put("/members/:id", async(req, res) => {
       let updateMember = await Members.update(req.params.id, req.body.name);
       res.json(checkAndChange(updateMember));
     })// \PUT
     // DELETE
-    app.delete("/:id", async(req, res) => {
+    app.delete("/members/:id", async(req, res) => {
         let updateMember = await Members.delete(req.params.id);
         res.json(checkAndChange(updateMember));
     })// \DELETE
