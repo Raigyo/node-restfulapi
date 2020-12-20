@@ -7,18 +7,18 @@ const swaggerUi = require('swagger-ui-express');
 const swaggerDocument = require('./public/swagger-'+config.env+'.json');
 if (config.env === "development") {const morgan  = require('morgan')}; // use of morgan - dev
 
-// use config.js using async
-// switch swagger dev vs prod json
-
-
 // DB connexion - OK: launch app / KO: catch error
-
 mysql.createPool({
-  host: process.env.DB_HOST_PROD,
-  port: process.env.DB_PORT_PROD,
-  database: process.env.DB_NAME_PROD,
-  user: process.env.DB_USER_PROD,
-  password: process.env.DB_PASSWORD_PROD
+  // host: process.env.DB_HOST_PROD,
+  // port: process.env.DB_PORT_PROD,
+  // database: process.env.DB_NAME_PROD,
+  // user: process.env.DB_USER_PROD,
+  // password: process.env.DB_PASSWORD_PROD
+  host: config.db.host,
+  port: config.db.port,
+  database: config.db.database,
+  user: config.db.user,
+  password: config.db.password
 }).then((db) => {
   console.log('Connected to database'); // MSG for Heroku
 
@@ -28,7 +28,7 @@ mysql.createPool({
   let MembersRouter = express.Router();
   let Members = require('./public/classes/Members')(db, config);
 
-  // We use morgan to check url request in console
+  // We use morgan to check url request in console - dev
   if (config.env === "development") {app.use(morgan('dev'))};
 
   app.use(express.json()); // for parsing application/json

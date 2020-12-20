@@ -5,7 +5,7 @@
     "license": {
       "name": "ISC"
     },
-    "description": "API REST to manage users"
+    "description": "API REST to manage users - In production for demonstration purpose, use it fairly!"
   },
   "basePath": "/",
   "host": "raigyo-node-members.herokuapp.com",
@@ -13,12 +13,16 @@
     {
       "name": "members",
       "description": "Methods for managing users"
+    },
+    {
+      "name": "members-id",
+      "description": "Methods for managing users with ID"
     }
   ],
   "paths": {
     "/members/{id}": {
       "get": {
-        "tags": ["members"],
+        "tags": ["members-id"],
         "summary": "members/{id}",
         "consumes": [
           "application/json"
@@ -34,7 +38,7 @@
         "responses": {}
       },
       "put": {
-        "tags": ["members"],
+        "tags": ["members-id"],
         "summary": "members/{id}",
         "consumes": [
           "application/json"
@@ -66,7 +70,7 @@
         "responses": {}
       },
       "delete": {
-        "tags": ["members"],
+        "tags": ["members-id"],
         "summary": "members/{id}",
         "consumes": [
           "application/json"
