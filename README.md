@@ -19,10 +19,19 @@ The APi has been documented using Swagger and Gitbook.
 
 ![front capture](_readme-img/front-02.png)
 
-## Architecture
+## Online versions
+
+- [Front-end](https://raigyo-node-members-front.herokuapp.com/)
+- [Swagger documentation](https://raigyo-node-members.herokuapp.com/api-docs/)
+- [Gitbook documentation](https://raigyo-api-rest.gitbook.io/documen/-MOfXc8mbW-fYGib3_sc/).
+
+
+## How to test locally
+
+### Architecture Back and Front
 
 ````
--- assets
+-- public
     -- classes
         Members.js
     config.json
@@ -38,14 +47,6 @@ The APi has been documented using Swagger and Gitbook.
       members.twig
 app.js
 ````
-
-## Online versions
-
-- [Front-end](https://raigyo-node-members-front.herokuapp.com/)
-- [Swagger documentation](https://raigyo-node-members.herokuapp.com/api-docs/)
-- [Gitbook documentation](https://raigyo-api-rest.gitbook.io/documen/-MOfXc8mbW-fYGib3_sc/).
-
-## How to test locally
 
 ### Back-end
 
