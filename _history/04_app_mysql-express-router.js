@@ -23,7 +23,7 @@ mysql.createConnection({
   const app = express();
   // expressOasGenerator.init(app, {});
   let MembersRouter = express.Router();
-  let Members = require('./public/classes/Members')(db, config);
+  let Members = require('../public/classes/Members')(db, config);
 
   // We use morgan to check url request in console
   app.use(morgan('dev'));

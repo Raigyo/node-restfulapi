@@ -16,6 +16,7 @@ const configs = {
   development: {
     rootAPI: process.env.API_HOST_DEV,
     port: process.env.API_PORT_DEV,
+    phpMyAdmin: process.env.PHP_MYADMIN_DEV,
     db: {
         host: process.env.DB_HOST_DEV,
         port: process.env.DB_PORT_DEV,

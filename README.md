@@ -254,37 +254,49 @@ See also:
 
 - [express](https://www.npmjs.com/package/express): Fast, unopinionated, minimalist web framework for node.
 
-`npm i express`
+  `npm i express`
 
 - [morgan](https://www.npmjs.com/package/morgan): HTTP request logger middleware for node.js.
 
-`npm i morgan`
+  `npm i morgan --save-dev`
 
 - [body-parser](https://www.npmjs.com/package/body-parser): Node.js body parsing middleware.
 
-`npm i body-parser`
+  `npm i body-parser`
 
-Note: not needed.
+  Note: not needed.
 
-Use instead in *app.js*:
+  Use instead in *app.js*:
 
-````js
-app.use(express.json()) // for parsing application/json
-app.use(express.urlencoded({ extended: true })); // for parsing application/x-www-form-urlencoded
-````
+  ````js
+  app.use(express.json()) // for parsing application/json
+  app.use(express.urlencoded({ extended: true })); // for parsing application/x-www-form-urlencoded
+  ````
 - [uuid](https://www.npmjs.com/package/uuid): For the creation of RFC4122 UUIDs.
 
-`npm i uuid`
+  `npm i uuid`
 
 - [mysql](https://www.npmjs.com/package/mysql): MySQL client for Node.js.
 
-`npm i mysql`
+  `npm i mysql`
 
 Used during developpment but replaced by *promise-mysql*.
 
 - [promise-mysql](https://www.npmjs.com/package/promise-mysql): Promise-mysql is a wrapper for mysqljs/mysql that wraps function calls with Bluebird promises.
 
-`npm i promise-mysql`
+  `npm i promise-mysql`
+
+- [helmet](https://www.npmjs.com/package/helmet): Helmet helps you secure your Express apps by setting various HTTP headers. It's not a silver bullet, but it can help!.
+
+  `npm i helmet`
+
+- [cors](https://www.npmjs.com/package/cors): CORS is a node.js package for providing a Connect/Express middleware that can be used to enable CORS with various options.
+
+  `npm i cors`
+
+- [express-jwt](https://www.npmjs.com/package/express-jwt): This module provides Express middleware for validating JWTs (JSON Web Tokens) through the jsonwebtoken module. The decoded JWT payload is available on the request object.
+
+  `npm i express-jwt`
 
 - [dotenv](https://www.npmjs.com/package/dotenv): Dotenv is a zero-dependency module that loads environment variables from a .env file into process.env.
 
@@ -309,11 +321,15 @@ Used during developpment but replaced by *promise-mysql*.
 
 - [twig](https://www.npmjs.com/package/twig): Twig.js is a pure JavaScript implementation of the Twig PHP templating language.
 
-`npm i twig`
+  `npm i twig`
 
-- [axios](https://www.npmjs.com/package/axios): Promise based HTTP client for the browser and node.js
+- [axios](https://www.npmjs.com/package/axios): Promise based HTTP client for the browser and node.js.
 
-`npm i axios`
+  `npm i axios`
+
+- [jwks-rsa](https://www.npmjs.com/package/jwks-rsa): A library to retrieve RSA signing keys from a JWKS (JSON Web Key Set) endpoint.
+
+  `npm i jwks-rsa`
 
 
 ## FYI: Module creation on Github (exclude node_modules excepted one folder or file)
@@ -360,8 +376,11 @@ FLUSH PRIVILEGES;
 - [GitBook](https://www.gitbook.com/)
 - [Docker-compose for MySQL with phpMyAdmin](https://tecadmin.net/docker-compose-for-mysql-with-phpmyadmin/)
 - [Docker references](https://docs.docker.com/reference/)
+- [Morgan NPM Logger – The Beginner’s Guide](https://coralogix.com/log-analytics-blog/morgan-npm-logger-the-complete-guide/)
 - [Why Auto Increment Is A Terrible Idea](https://www.clever-cloud.com/blog/engineering/2015/05/20/why-auto-increment-is-a-terrible-idea/)
 - [Axios Handling Errors](https://github.com/axios/axios#handling-errors)
 - [JSON to JavaScript Converter](https://dataformat.net/json/converter/to-javascript)
 - [Deploying/Hosting Node.js app on Heroku with MySQL database](https://bezkoder.com/deploy-node-js-app-heroku-cleardb-mysql/)
 - [Configure Swagger For Node.js Backend API Endpoints on Heroku](https://medium.com/@thankgodukachukwu/configure-swagger-for-node-js-backend-api-endpoints-on-heroku-f17ddeaa18c7)
+- [Node.js and Express Tutorial: Building and Securing RESTful APIs](https://auth0.com/blog/node-js-and-express-tutorial-building-and-securing-restful-apis/)
+- [jwks-rsa - Express Example](https://github.com/auth0/node-jwks-rsa/tree/master/examples/express-demo)

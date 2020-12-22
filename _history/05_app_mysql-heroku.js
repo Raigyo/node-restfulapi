@@ -13,6 +13,11 @@ const swaggerDocument = require('./public/swagger-'+config.env+'.json');
 
 // DB connexion - OK: launch app / KO: catch error
 mysql.createPool({
+  // host: process.env.DB_HOST_PROD,
+  // port: process.env.DB_PORT_PROD,
+  // database: process.env.DB_NAME_PROD,
+  // user: process.env.DB_USER_PROD,
+  // password: process.env.DB_PASSWORD_PROD
   host: config.db.host,
   port: config.db.port,
   database: config.db.database,
@@ -78,16 +83,16 @@ mysql.createPool({
 
   // Port listening dev
   if (config.env === "development") {
-    app.listen(config.port, () => console.log(
-      'Started on port '+config.port+ ', url: ' +config.rootAPI+'members','\n',
+    app.listen(config.portAPI, () => console.log(
+      'Started on: '+config.port+config.rootAPI+'members','\n',
       'PHP my Admin :'+config.phpMyAdmin,'\n',
-      'Swagger: '+config.rootAPI + 'api-docs')
+      'Swagger: '+config.port+config.rootAPI + 'api-docs')
     );
   };
   // Port listening HEROKU
   if (config.env === "production") {
     app.listen(process.env.PORT || 5000, () => console.log(
-      'Started on : '+process.env.PORT +', url: '+config.rootAPI+'members', '\n',
+      'Started on : '+process.env.PORT +': '+config.rootAPI+'members', '\n',
       process.env.API_HOST_PROD + 'api-docs')
     );
   };
