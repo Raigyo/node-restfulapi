@@ -25,7 +25,7 @@ The APi has been documented using Swagger and Gitbook.
 -- assets
     -- classes
         Members.js
-    config-dev.json
+    config.json
     functions.js
     swagger.json
 -- front
@@ -41,7 +41,7 @@ app.js
 
 ## Online versions
 
-- Front-end
+- [Front-end](https://raigyo-node-members-front.herokuapp.com/)
 - [Swagger documentation](https://raigyo-node-members.herokuapp.com/api-docs/)
 - [Gitbook documentation](https://raigyo-api-rest.gitbook.io/documen/-MOfXc8mbW-fYGib3_sc/).
 

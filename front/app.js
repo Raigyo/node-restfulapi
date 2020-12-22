@@ -1,7 +1,7 @@
 // Modules
 require("babel-register");
 const express = require('express');
-const morgan  = require('morgan');
+// const morgan  = require('morgan');
 const axios = require('axios');
 const twig = require('twig');
 
@@ -9,11 +9,12 @@ const twig = require('twig');
 const app = express();
 const port = 8082;
 const fetch = axios.create({
-  baseURL: 'http://localhost:8080/api/v1'
+  // baseURL: 'http://localhost:8080/'
+  baseURL: 'https://raigyo-node-members.herokuapp.com/'
 });
 
 // Middleware
-app.use(morgan('dev'));
+// app.use(morgan('dev'));
 app.use(express.json()); // for parsing application/json
 app.use(express.urlencoded({ extended: true })); // for parsing application/x-www-form-urlencoded
 
@@ -82,9 +83,13 @@ app.post('/insert', (req, res) => {
 });
 
 // App launch
-app.listen(port, () => console.log(
-  'Front started on port '+port+': http://localhost:'+port)
-);
+// app.listen(port, () => console.log(
+//   'Front started on port '+port+': http://localhost:'+port)
+// );
+
+app.listen(process.env.PORT || 5000, () => console.log(
+  'Front started on port '+process.env.PORT+': https://raigyo-node-members-front.herokuapp.com/'
+));
 
 // Functions
 

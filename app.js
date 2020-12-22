@@ -3,8 +3,6 @@ const express = require('express');
 const mysql = require('promise-mysql');
 const helmet = require('helmet');
 const cors = require('cors');
-const jwt = require('express-jwt');
-const jwksRsa = require('jwks-rsa');
 const config = require('./public/config');
 const {checkAndChange} = require('./public/functions');
 const swaggerUi = require('swagger-ui-express');
@@ -19,12 +17,20 @@ mysql.createPool({
   user: config.db.user,
   password: config.db.password
 }).then((db) => {
-  console.log('Connected to database'); // MSG for Heroku
+  console.log('Connected to database');
 
   // Routing init
-  const app = express(); // adding Helmet to enhance your API's security
-  app.use(helmet()); // enabling CORS for all requests
-  app.use(cors());
+  const app = express();
+  app.use(helmet()); // adding Helmet to enhance API's security
+  // enabling CORS for all requests
+  // app.use(cors())
+  const corsOptions = {
+    origin: 'http://localhost:8080/',
+    optionsSuccessStatus: 200 // For legacy browser support
+  }
+
+  app.use(cors(corsOptions));
+
   // expressOasGenerator.init(app, {});
   let MembersRouter = express.Router();
   let Members = require('./public/classes/Members')(db, config);
