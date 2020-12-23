@@ -1,4 +1,4 @@
-# REST API - Setting up a Node.js development environment with Express.js
+# [REST API - Setting up a Node.js development environment with Express.js](#rest-api---setting-up-a-nodejs-development-environment-with-expressjs)
 
 *December 2020*
 
@@ -19,7 +19,38 @@ The APi has been documented using Swagger and Gitbook.
 
 ![front capture](_readme-img/front-02.png)
 
-## Online versions
+## Summary
+
+- [REST API - Setting up a Node.js development environment with Express.js](#rest-api---setting-up-a-nodejs-development-environment-with-expressjs)
+  * [Online versions](#online-versions)
+  * [How to test locally](#how-to-test-locally)
+    + [Architecture Back and Front](#architecture-back-and-front)
+    + [Back-end](#back-end)
+    + [Front-end](#front-end)
+- [Useful informations about the application](#useful-informations-about-the-application)
+  * [Docker: MySql / PHPMyAdmin with persistant data](#docker--mysql---phpmyadmin-with-persistant-data)
+    + [Create config-dev.json](#create-config-devjson)
+    + [How to launch the docker file with database](#how-to-launch-the-docker-file-with-database)
+    + [Docker compose useful commands](#docker-compose-useful-commands)
+  * [Launch the app](#launch-the-app)
+  * [CURL request: test the API using command lines](#curl-request--test-the-api-using-command-lines)
+  * [Postman](#postman)
+  * [Documentation: OpenAPI 3.0 / Swagger](#documentation--openapi-30---swagger)
+    + [express-oas-generator](#express-oas-generator)
+    + [swagger-ui-express](#swagger-ui-express)
+  * [Documentation: GitBook](#documentation--gitbook)
+  * [Dependancies](#dependancies)
+    + [Back-end](#back-end-1)
+    + [Front-end](#front-end-1)
+  * [FYI: Module creation on Github (exclude node_modules excepted one folder or file)](#fyi--module-creation-on-github--exclude-node-modules-excepted-one-folder-or-file-)
+  * [FYI: MySql 8 & NodeJS: mysql_native_password](#fyi--mysql-8---nodejs--mysql-native-password)
+  * [Bash useful commands](#bash-useful-commands)
+  * [Ressources](#ressources)
+
+<small><i><a href='http://ecotrust-canada.github.io/markdown-toc/'>Table of contents generated with markdown-toc</a></i></small>
+
+
+## [Online versions](#online-versions)
 
 - [Front-end](https://raigyo-node-members-front.herokuapp.com/)
 - [Swagger documentation](https://raigyo-node-members.herokuapp.com/api-docs/)
