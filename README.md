@@ -19,9 +19,10 @@ The APi has been documented using Swagger and Gitbook.
 
 ![front capture](_readme-img/front-02.png)
 
-## Summary
+## [Summary](#summary)
 
 - [REST API - Setting up a Node.js development environment with Express.js](#rest-api---setting-up-a-nodejs-development-environment-with-expressjs)
+- [Summary](#summary)
   * [Online versions](#online-versions)
   * [How to test locally](#how-to-test-locally)
     + [Architecture Back and Front](#architecture-back-and-front)
@@ -57,9 +58,9 @@ The APi has been documented using Swagger and Gitbook.
 - [Gitbook documentation](https://raigyo-api-rest.gitbook.io/documen/-MOfXc8mbW-fYGib3_sc/)
 
 
-## How to test locally
+## [How to test locally](#how-to-test-locally)
 
-### Architecture Back and Front
+### [Architecture Back and Front](#architecture-back-and-front)
 
 ````
 -- public
@@ -79,7 +80,7 @@ The APi has been documented using Swagger and Gitbook.
 app.js
 ````
 
-### Back-end
+### [Back-end](#back-end)
 
 - Clone [local-version branch](https://github.com/Raigyo/node-restfulapi/tree/local-version): `git clone -b local-version git@github.com:Raigyo/node-restfulapi.git`
 - `npm install`
@@ -95,25 +96,25 @@ app.js
 - Open: [http://localhost:8080/members](http://localhost:8080/members)
 - Test with Swagger: [http://localhost:8080/api-docs](http://localhost:8080/api-docs)
 
-### Front-end
+### [Front-end](#front-end)
 
 - Move to front-end par from another terminal:`cd front`
 - `npm install`
 - `npm start` (nodemon) or `node app.js`
 - Open member list page: [http://localhost:8082/members](http://localhost:8082/members)
 
-# Useful informations about the application
+# [Useful informations about the application](#useful-informations-about-the-application)
 
-## Docker: MySql / PHPMyAdmin with persistant data
+## [Docker: MySql / PHPMyAdmin with persistant data](#docker--mysql---phpmyadmin-with-persistant-data)
 
 - container = read-only
 - volume = stored locally and writable (dbdata:/var/lib/mysql)
 
-### Create config-dev.json
+### [Create config-dev.json](#create-config-devjson)
 
 To use API with docker file, rename *./assets/_config-dev.docker.json* by *config-dev.json*.
 
-### How to launch the docker file with database
+### [How to launch the docker file with database](#how-to-launch-the-docker-file-with-database)
 
 Note: you can change credentials in *docker-compose.yml* before creating the container.
 
@@ -131,7 +132,7 @@ Create database: *nodejs*
 
 Seed importing: [nodejs.sql](./_mysql-db/nodejs.sql)
 
-### Docker compose useful commands
+### [Docker compose useful commands](#docker-compose-useful-commands)
 
 `docker-compose up -d`
 
@@ -161,7 +162,7 @@ Stops running containers without removing them.
 
 Restarts all stopped and running services.
 
-## Launch the app
+## [Launch the app](#launch-the-app)
 
 `npm install`: only the first time after cloning.
 
@@ -170,7 +171,7 @@ Restarts all stopped and running services.
 `npm run start:node`: will run `node app.js`. No live reload.
 
 
-## CURL request: test the API using command lines
+## [CURL request: test the API using command lines](#curl-request--test-the-api-using-command-lines)
 
 **GET ID**
 
@@ -192,13 +193,13 @@ Restarts all stopped and running services.
 
 `curl -X POST "http://localhost:8080/members" -H  "accept: application/json" -H  "Content-Type: application/json" -d "{  \"name\": \"<NEW-NAME>\"}"`
 
-## Postman
+## [Postman](#postman)
 
 The following file can be imported in Postman to make CRUD operations test: [NodeJS-members.postman_collection.json](./_postman/NodeJS-members.postman_collection.json)
 
 ![postman capture](_readme-img/postman-01.png)
 
-## Documentation: OpenAPI 3.0 / Swagger
+## [Documentation: OpenAPI 3.0 / Swagger](#documentation--openapi-30---swagger)
 
 Swagger is an Interface Description Language for describing RESTful APIs expressed using JSON/YAML. Swagger is used together with a set of open-source software tools to design, build, document, and use RESTful web services. Swagger includes automated documentation, code generation (into many programming languages), and test-case generation.
 
@@ -206,7 +207,7 @@ To use it with this app, just open [http://localhost:8080/api-docs](http://local
 
 Below, the procedure to install it from scratch.
 
-### express-oas-generator
+### [express-oas-generator](#express-oas-generator)
 
 Install: `npm i express-oas-generator`
 
@@ -239,7 +240,7 @@ const expressOasGenerator = require('express-oas-generator'); // new line
   const app = express();
   expressOasGenerator.init(app, {}); // new line
 ````
-### swagger-ui-express
+### [swagger-ui-express](#swagger-ui-express)
 
 Install: `npm i swagger-ui-express`
 
@@ -274,15 +275,15 @@ See also:
 
 ![swagger capture](_readme-img/swagger-01.png)
 
-## Documentation: GitBook
+## [Documentation: GitBook](#documentation--gitbook)
 
 [Gitbook documentation](https://raigyo-api-rest.gitbook.io/documen/-MOfXc8mbW-fYGib3_sc/).
 
 [PDF version](./_gitbook/20201216-gitbook-members.pdf).
 
-## Dependancies
+## [Dependancies](#dependancies)
 
-### Back-end
+### [Back-end](#back-end-1)
 
 - [express](https://www.npmjs.com/package/express): Fast, unopinionated, minimalist web framework for node.
 
@@ -345,7 +346,7 @@ Used during developpment but replaced by *promise-mysql*.
 
 [http://localhost:8080/api-docs/](http://localhost:8080/api-docs/)
 
-### Front-end
+### [Front-end](#front-end-1)
 
 - [twig](https://www.npmjs.com/package/twig): Twig.js is a pure JavaScript implementation of the Twig PHP templating language.
 
@@ -356,7 +357,7 @@ Used during developpment but replaced by *promise-mysql*.
   `npm i axios`
 
 
-## FYI: Module creation on Github (exclude node_modules excepted one folder or file)
+## [FYI: Module creation on Github (exclude node_modules excepted one folder or file)](#fyi--module-creation-on-github--exclude-node-modules-excepted-one-folder-or-file-)
 
 **.gitignore**
 
@@ -370,7 +371,7 @@ node_modules/**
 !/node_modules/module_creation/*
 ````
 
-## FYI: MySql 8 & NodeJS: mysql_native_password
+## [FYI: MySql 8 & NodeJS: mysql_native_password](#fyi--mysql-8---nodejs--mysql-native-password)
 
 ````sql
 CREATE USER 'user'@'localhost' IDENTIFIED BY 'password';
@@ -384,7 +385,7 @@ ALTER USER 'user'@'localhost' IDENTIFIED WITH mysql_native_password BY 'new_pass
 FLUSH PRIVILEGES;
 ````
 
-## Bash useful commands
+## [Bash useful commands](#bash-useful-commands)
 
 `sudo netstat -lpn |grep :8080`: to check if port 8080 is used and display its PID.
 
@@ -392,7 +393,7 @@ FLUSH PRIVILEGES;
 
 `sudo fuser -k 8080/tcp`: to kill the port 8080.
 
-## Ressources
+## [Ressources](#ressources)
 
 - [MDN: Express web framework (Node.js/JavaScript)](https://developer.mozilla.org/en-US/docs/Learn/Server-side/Express_Nodejs)
 - [ExpressJS](https://expressjs.com/fr/)
