@@ -23,7 +23,7 @@ The APi has been documented using Swagger and Gitbook.
 
 - [Front-end](https://raigyo-node-members-front.herokuapp.com/)
 - [Swagger documentation](https://raigyo-node-members.herokuapp.com/api-docs/)
-- [Gitbook documentation](https://raigyo-api-rest.gitbook.io/documen/-MOfXc8mbW-fYGib3_sc/).
+- [Gitbook documentation](https://raigyo-api-rest.gitbook.io/documen/-MOfXc8mbW-fYGib3_sc/)
 
 
 ## How to test locally
@@ -61,8 +61,8 @@ app.js
   - Create database: *nodejs*
   - Seed importing: *./_mysql-db/nodejs.sql*
 - Launch back-end from root: `npm start` (nodemon) or `node app.js`
-- Open: [http://localhost:8080/api/v1/members](http://localhost:8080/api/v1/members)
-- Test with Swagger: [http://localhost:8080/api/v1/api-docs](http://localhost:8080/api/v1/api-docs)
+- Open: [http://localhost:8080/members](http://localhost:8080/members)
+- Test with Swagger: [http://localhost:8080/api-docs](http://localhost:8080/api-docs)
 
 ### Front-end
 
@@ -143,23 +143,23 @@ Restarts all stopped and running services.
 
 **GET ID**
 
-`curl -X GET "http://localhost:8080/api/v1/members/<ID>" -H  "accept: application/json"`
+`curl -X GET "http://localhost:8080/members/<ID>" -H  "accept: application/json"`
 
 **PUT**
 
-`curl -X PUT "http://localhost:8080/api/v1/members/<ID>" -H  "accept: application/json" -H  "Content-Type: application/json" -d "{  \"name\": \"<NEW-NAME>\"}"`
+`curl -X PUT "http://localhost:8080/members/<ID>" -H  "accept: application/json" -H  "Content-Type: application/json" -d "{  \"name\": \"<NEW-NAME>\"}"`
 
 **DELETE**
 
-`curl -X DELETE "http://localhost:8080/api/v1/members/<ID>" -H  "accept: application/json"`
+`curl -X DELETE "http://localhost:8080/members/<ID>" -H  "accept: application/json"`
 
 **GET**
 
-`curl -X GET "http://localhost:8080/api/v1/members" -H  "accept: application/json"`
+`curl -X GET "http://localhost:8080/members" -H  "accept: application/json"`
 
 **POST**
 
-`curl -X POST "http://localhost:8080/api/v1/members" -H  "accept: application/json" -H  "Content-Type: application/json" -d "{  \"name\": \"<NEW-NAME>\"}"`
+`curl -X POST "http://localhost:8080/members" -H  "accept: application/json" -H  "Content-Type: application/json" -d "{  \"name\": \"<NEW-NAME>\"}"`
 
 ## Postman
 
@@ -171,7 +171,7 @@ The following file can be imported in Postman to make CRUD operations test: [Nod
 
 Swagger is an Interface Description Language for describing RESTful APIs expressed using JSON/YAML. Swagger is used together with a set of open-source software tools to design, build, document, and use RESTful web services. Swagger includes automated documentation, code generation (into many programming languages), and test-case generation.
 
-To use it with this app, just open [http://localhost:8080/api/v1/api-docs](http://localhost:8080/api/v1/api-docs).
+To use it with this app, just open [http://localhost:8080/api-docs](http://localhost:8080/api-docs).
 
 Below, the procedure to install it from scratch.
 
@@ -229,7 +229,7 @@ const swaggerDocument = require('./swagger.json'); // new line, use the right pa
 
 `npm start`
 
-[http://localhost:8080/api/v1/api-docs](http://localhost:8080/api/v1/api-docs)
+[http://localhost:8080/api-docs](http://localhost:8080/api-docs)
 
 The file *swagger.json* can be edited to provide more accurate informations.
 
@@ -295,13 +295,9 @@ Used during developpment but replaced by *promise-mysql*.
 
   `npm i cors`
 
-- [express-jwt](https://www.npmjs.com/package/express-jwt): This module provides Express middleware for validating JWTs (JSON Web Tokens) through the jsonwebtoken module. The decoded JWT payload is available on the request object.
-
-  `npm i express-jwt`
-
 - [dotenv](https://www.npmjs.com/package/dotenv): Dotenv is a zero-dependency module that loads environment variables from a .env file into process.env.
 
-`npm i dotenv`
+  `npm i dotenv`
 
 - [express-oas-generator](https://www.npmjs.com/package/express-oas-generator):
 
@@ -310,13 +306,13 @@ Used during developpment but replaced by *promise-mysql*.
 
   NB: can be removed after generating json.
 
-`npm i express-oas-generator`
+  `npm i express-oas-generator`
 
 - [swagger-ui-express](https://www.npmjs.com/package/swagger-ui-express): This module allows you to serve auto-generated swagger-ui generated API docs from express, based on a *swagger.json* file. The result is living documentation for your API hosted from your API server via a route.
 
-`npm i swagger-ui-express`
+  `npm i swagger-ui-express`
 
-[http://localhost:8080/api/v1/api-docs/](http://localhost:8080/api/v1/api-docs/)
+[http://localhost:8080/api-docs/](http://localhost:8080/api-docs/)
 
 ### Front-end
 
@@ -327,10 +323,6 @@ Used during developpment but replaced by *promise-mysql*.
 - [axios](https://www.npmjs.com/package/axios): Promise based HTTP client for the browser and node.js.
 
   `npm i axios`
-
-- [jwks-rsa](https://www.npmjs.com/package/jwks-rsa): A library to retrieve RSA signing keys from a JWKS (JSON Web Key Set) endpoint.
-
-  `npm i jwks-rsa`
 
 
 ## FYI: Module creation on Github (exclude node_modules excepted one folder or file)
@@ -363,11 +355,11 @@ FLUSH PRIVILEGES;
 
 ## Bash useful commands
 
-`sudo netstat -lpn |grep :8080`: check if port 8080 is used and display its PID.
+`sudo netstat -lpn |grep :8080`: to check if port 8080 is used and display its PID.
 
-`sudo kill -9 <PID>`: kill the process used by PID.
+`sudo kill -9 <PID>`: to kill the process used by PID.
 
-`sudo fuser -k 8080/tcp`: kill the port 8080.
+`sudo fuser -k 8080/tcp`: to kill the port 8080.
 
 ## Ressources
 
@@ -384,4 +376,3 @@ FLUSH PRIVILEGES;
 - [Deploying/Hosting Node.js app on Heroku with MySQL database](https://bezkoder.com/deploy-node-js-app-heroku-cleardb-mysql/)
 - [Configure Swagger For Node.js Backend API Endpoints on Heroku](https://medium.com/@thankgodukachukwu/configure-swagger-for-node-js-backend-api-endpoints-on-heroku-f17ddeaa18c7)
 - [Node.js and Express Tutorial: Building and Securing RESTful APIs](https://auth0.com/blog/node-js-and-express-tutorial-building-and-securing-restful-apis/)
-- [jwks-rsa - Express Example](https://github.com/auth0/node-jwks-rsa/tree/master/examples/express-demo)
