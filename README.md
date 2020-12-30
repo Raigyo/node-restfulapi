@@ -55,7 +55,7 @@ The APi has been documented using Swagger and Gitbook.
 
 - [Front-end](https://raigyo-node-members-front.herokuapp.com/)
 - [Swagger documentation](https://raigyo-node-members.herokuapp.com/api-docs/)
-- [Gitbook documentation](https://raigyo-api-rest.gitbook.io/documen/-MOfXc8mbW-fYGib3_sc/)
+- [Gitbook documentation](https://app.gitbook.com/@vincent-chilot/s/documen/members)
 
 
 ## [How to test locally](#how-to-test-locally)
@@ -277,7 +277,7 @@ See also:
 
 ## [Documentation: GitBook](#documentation--gitbook)
 
-[Gitbook documentation](https://raigyo-api-rest.gitbook.io/documen/-MOfXc8mbW-fYGib3_sc/).
+[Gitbook documentation](https://app.gitbook.com/@vincent-chilot/s/documen/members).
 
 [PDF version](./_gitbook/20201216-gitbook-members.pdf).
 
