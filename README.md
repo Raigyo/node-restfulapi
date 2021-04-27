@@ -2,7 +2,7 @@
 
 *December 2020*
 
-> 🔨 ResFul API in NodeJS+Express to manage a list of members. From udemy '[Apprendre Node.js & Créer une API REST de A à Z !](https://www.udemy.com/course/nodejs-api-rest/)'. Demo on [Heroku](#online-versions).
+> 🔨 ResFul API in NodeJS+Express to manage a list of members. From udemy '[Apprendre Node.js & Créer une API REST de A à Z ! - Bryan P.](https://www.udemy.com/course/nodejs-api-rest/)'. Demo on [Heroku](https://raigyo-node-members-front.herokuapp.com/members).
 
 ![Node Logo](_readme-img/nodejs-logo.png)
 
